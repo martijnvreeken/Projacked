@@ -1,25 +1,20 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
-var VueResource = require('vue-resource');
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('clients', require('./components/Clients.vue'));
+const dashboard = require('./components/Dashboard.vue');
+Vue.component('dashboard', dashboard);
+const clients = require('./components/Clients.vue');
+Vue.component('clients', clients);
 Vue.component('client', require('./components/Client.vue'));
 
-Vue.use(VueResource);
+const routes = [
+  { name: 'home', path: '/', component: dashboard },
+  { name: 'clients', path: '/klanten', component: clients }
+];
+
+const router = new VueRouter({
+  routes
+});
 
 const app = new Vue({
-    el: '#app'
-});
+    router
+}).$mount('#app');

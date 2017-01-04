@@ -21,8 +21,9 @@
     </script>
 </head>
 <body>
-    @include('nav.main')
     <div id="app">
+        @include('nav.main')
+        <br>
         @yield('content')
     </div>
 
