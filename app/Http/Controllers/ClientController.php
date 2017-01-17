@@ -10,7 +10,7 @@ use Projacked\Models\Client;
 class ClientController extends Controller
 {
     public function get() {
-        $clients = Client::paginate(9);
+        $clients = Client::paginate(\Config::get('projacked.items_per_page'));
         return new JsonResponse($clients);
     }
     

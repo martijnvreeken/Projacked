@@ -3,11 +3,12 @@
 <!--        <a class="nav-item is-brand" href="/">
             <img src="http://bulma.io/images/bulma-type.png" alt="Bulma logo">
         </a>-->
-        <router-link to="/" class="nav-item" active-class="is-active">Home</router-link>
-        <router-link to="/aanvragen" class="nav-item" active-class="is-active">Aanvragen</router-link>
-        <router-link to="/klanten" class="nav-item" active-class="is-active">Klanten</router-link>
-        <a class="nav-item" href="#!">
-            Projecten
+        <a href="/" class="nav-item">Home</a>
+        <a class="nav-item" href="/login">
+            Login
+        </a>
+        <a class="nav-item" href="/register">
+            Register
         </a>
     </div>
 
@@ -31,11 +32,5 @@
     </span>
 
     <div class="nav-right nav-menu">
-        <a class="nav-item" href="/login">
-            Login
-        </a>
-        <a class="nav-item" href="/register">
-            Register
-        </a>
     </div>-->
 </nav>

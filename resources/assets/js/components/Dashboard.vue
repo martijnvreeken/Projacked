@@ -1,24 +1,23 @@
 <template>
 <div class="container">
     <h1 class="title is-1 has-text-centered">Dashboard</h1>
+    <latest-leads api_url="/api/leads"></latest-leads>
     <div class="columns">
         <div class="column">
-            <div class="box">
-                <h2 class="subtitle is-3">Leads</h2>
-                <a class="button">Ga naar &gt;&gt;</a>
-            </div>
+            <router-link to="/klanten">
+                <div class="box is-clearfix">
+                    <h2 class="subtitle is-3">Klanten</h2>
+                    <span class="button is-pulled-right">Ga naar &gt;&gt;</span>
+                </div>
+            </router-link>
         </div>
         <div class="column">
-            <div class="box">
-                <h2 class="subtitle is-3">Klanten</h2>
-                <router-link class="button" to="/klanten">Ga naar &gt;&gt;</router-link>
-            </div>
-        </div>
-        <div class="column">
-            <div class="box">
-                <h2 class="subtitle is-3">Projecten</h2>
-                <a class="button">Ga naar &gt;&gt;</a>
-            </div>
+            <router-link to="/projecten">
+                <div class="box is-clearfix">
+                    <h2 class="subtitle is-3">Projecten</h2>
+                    <span class="button is-pulled-right">Ga naar &gt;&gt;</span>
+                </div>
+            </router-link>
         </div>
     </div>
 </div>

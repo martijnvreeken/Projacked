@@ -27,6 +27,7 @@ class CreateClientsTable extends Migration
             $table->string('zipcode')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

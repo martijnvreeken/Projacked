@@ -1,7 +1,6 @@
 /*@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);*/
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
 /*@import "variables";*/
-/*@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";*/
 /*! bulma.io v0.2.3 | MIT License | github.com/jgthms/bulma */
 @-webkit-keyframes spinAround {
   from {
@@ -6246,6 +6245,10 @@ a.panel-block:hover {
 
 .footer a:not(.icon):hover, .footer a:visited:not(.icon):hover {
   border-bottom-color: #00d1b2;
+}
+
+.detailview {
+  margin: 4px;
 }
 
 /*# sourceMappingURL=app.css.map */
