@@ -17,7 +17,7 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('code')->unique();
-            $table->integer('debit_number')->unique();
+            $table->integer('debit_number')->unique()->nullable();
             $table->string('coc_number')->nullable();
             $table->string('tax_number')->nullable();
             $table->string('email')->nullable();

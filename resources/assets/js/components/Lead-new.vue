@@ -27,13 +27,13 @@
             </p>
             <p>óf...</p>
             <div class="box">
-                <label class="label">Uurtarief</label>
-                <p class="control">
-                    <input class="input" type="text" placeholder="Uurtarief afspraak" v-model="hour_rate">
-                </p>
                 <label class="label">Urenschatting</label>
                 <p class="control">
                     <input class="input" type="text" placeholder="Grove schatting aantal uren voor project realisatie" v-model="hour_estimate">
+                </p>
+                <label class="label">Uurtarief</label>
+                <p class="control">
+                    <input class="input" type="text" placeholder="Uurtarief afspraak" v-model="hour_rate">
                 </p>
             </div>
             <button type="button" class="button is-primary" @click="submit">Opslaan</button>

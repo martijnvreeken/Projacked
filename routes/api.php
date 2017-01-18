@@ -26,3 +26,5 @@ Route::get('/leads', 'LeadController@get')->name('api.leads');
 Route::post('/leads', 'LeadController@store')->name('api.leads.create');
 Route::put('/leads/{lead}', 'LeadController@update')->name('api.leads.update');
 Route::delete('/leads/{lead}', 'LeadController@destroy')->name('api.leads.delete');
+
+Route::post('/leads/promote', 'LeadController@promote')->name('api.leads.promote');

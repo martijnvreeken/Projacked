@@ -6,6 +6,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Projacked\Http\Requests\LeadStore;
 use Projacked\Models\Lead;
+use Projacked\Repositories\ProjectRepository;
+use function app;
 
 class LeadController extends Controller
 {
@@ -28,5 +30,13 @@ class LeadController extends Controller
     public function destroy(Lead $lead) {
         $lead->delete();
         return new JsonResponse();
+    }
+    
+    public function promote(Request $request) {
+        $lead = new Lead($request->all());
+        $project_repository = app(ProjectRepository::class);
+        $project = $project_repository->fromLead($lead);
+        $lead->delete();
+        return new JsonResponse($project, 201);
     }
 }

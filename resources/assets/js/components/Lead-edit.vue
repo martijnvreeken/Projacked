@@ -47,8 +47,8 @@
     </section>
     <footer class="modal-card-foot">
         <a type="button" class="button is-primary" @click="submit">Opslaan</a>
-        <a class="button" @click="remove()">Verwijderen</a>
-        <a class="button" @click="cancel()">Annuleren</a>
+        <a class="button is-success" @click="promote()">Akkoord</a>
+        <a class="button is-danger" @click="remove()">Verwijderen</a>
     </footer>
   </div>
 </div>
@@ -64,7 +64,7 @@
                 if(this.validates()) {
                     this.$http.put('/api/leads/'+this.lead.id, this.lead).then(
                         function (response) {
-                            $('#lead-modal-'+this.lead.id).removeClass('is-active');
+                            this.cancel();
                         }
                     ).catch(
                         function (error) {
@@ -76,6 +76,22 @@
             remove() {
                 this.$http.delete('/api/leads/'+this.lead.id).then(
                     function (response) {
+                        var index = this.$parent.records.indexOf(this.lead);
+                        if(index > -1) {
+                            this.$parent.records.splice(index, 1);
+                        }
+                        this.cancel();
+                    }
+                ).catch(
+                    function (error) {
+                        console.log(error);
+                    }
+                );
+            },
+            promote() {
+                this.$http.post('/api/leads/promote', this.lead).then(
+                    function (response) {
+                        // successfuly promoted the lead, it's no longer available
                         var index = this.$parent.records.indexOf(this.lead);
                         if(index > -1) {
                             this.$parent.records.splice(index, 1);

@@ -28,7 +28,6 @@
         <footer class="card-footer">
           <a class="card-footer-item" @click="edit()">Edit</a>
         </footer>
-        <lead_edit :lead="lead"></lead_edit>
     </div>
 </div>
 </template>
