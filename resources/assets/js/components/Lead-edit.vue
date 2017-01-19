@@ -96,7 +96,7 @@
                         if(index > -1) {
                             this.$parent.records.splice(index, 1);
                         }
-                        this.cancel();
+                        app._router.push('/projecten');
                     }
                 ).catch(
                     function (error) {

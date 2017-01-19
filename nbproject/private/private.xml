@@ -4,9 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/projects/Projacked/resources/assets/js/app.js</file>
-            <file>file:/projects/Projacked/resources/assets/js/components/Client.vue</file>
-            <file>file:/projects/Projacked/resources/assets/sass/app.scss</file>
-            <file>file:/projects/Projacked/resources/assets/js/components/Lead-new.vue</file>
+            <file>file:/projects/Projacked/resources/assets/js/components/Leads.vue</file>
+            <file>file:/projects/Projacked/resources/assets/js/components/Projects-latest.vue</file>
+            <file>file:/projects/Projacked/resources/assets/js/components/Projects.vue</file>
+            <file>file:/projects/Projacked/resources/assets/js/components/Dashboard.vue</file>
+            <file>file:/projects/Projacked/app/Models/Project.php</file>
+            <file>file:/projects/Projacked/routes/api.php</file>
+            <file>file:/projects/Projacked/app/Repositories/ProjectRepository.php</file>
+            <file>file:/projects/Projacked/app/Http/Controllers/ProjectController.php</file>
+            <file>file:/projects/Projacked/app/Http/Controllers/LeadController.php</file>
         </group>
     </open-files>
 </project-private>

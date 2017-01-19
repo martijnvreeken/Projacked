@@ -33,7 +33,7 @@ class LeadController extends Controller
     }
     
     public function promote(Request $request) {
-        $lead = new Lead($request->all());
+        $lead = Lead::findOrFail($request->get('id'));
         $project_repository = app(ProjectRepository::class);
         $project = $project_repository->fromLead($lead);
         $lead->delete();

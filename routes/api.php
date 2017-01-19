@@ -28,3 +28,8 @@ Route::put('/leads/{lead}', 'LeadController@update')->name('api.leads.update');
 Route::delete('/leads/{lead}', 'LeadController@destroy')->name('api.leads.delete');
 
 Route::post('/leads/promote', 'LeadController@promote')->name('api.leads.promote');
+
+Route::get('/projects', 'ProjectController@get')->name('api.projects');
+Route::post('/projects', 'ProjectController@store')->name('api.projects.create');
+Route::put('/projects/{project}', 'ProjectController@update')->name('api.projects.update');
+Route::delete('/projects/{project}', 'ProjectController@destroy')->name('api.projects.delete');

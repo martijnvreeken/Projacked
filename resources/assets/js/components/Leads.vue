@@ -1,13 +1,14 @@
 <template>
     <div class="container">
+        <p v-if="! amount" class="has-text-centered">Geen aanvragen gevonden</p>
         <div class="columns is-multiline">
             <lead v-for="lead in records" :lead="lead"></lead>
             <lead_edit v-for="lead in records" :lead="lead"></lead_edit>
         </div>
         <hr>
-        <p v-if="data.from" class="has-text-centered">Toont {{ amount }} aanvragen van {{ data.total }} totaal</p>
+        <p v-if="amount" class="has-text-centered">Toont {{ amount }} aanvragen van {{ data.total }} totaal</p>
         <p class="has-text-centered"><router-link to="/aanvragen/nieuw">Voeg een aanvraag toe</router-link></p>
-        <p class="has-text-centered"><a v-show="data.next_page_url" @click.prevent="loadMore" href="#" class="button is-primary">Laad meer aanvragen</a></p>
+        <p v-if="data.next_page_url" class="has-text-centered"><a @click.prevent="loadMore" href="#" class="button is-primary">Laad meer aanvragen</a></p>
     </div>
 </template>
 
@@ -25,19 +26,23 @@
         created() {
             this.$http.get(this.api_url).then((response) => {
                 this.data = response.data;
-                this.records = this.records.concat(response.data.data);
+                if(response.data.data.length > 0) {
+                    this.records = this.records.concat(response.data.data);
+                }
             });
         },
         computed: {
             amount() {
-                return Math.min((this.data.current_page * this.data.per_page), this.data.total);
+                return this.records.length;
             },
         },
         methods: {
             loadMore() {
                 this.$http.get(this.data.next_page_url).then((response) => {
                     this.data = response.data;
-                    this.records = this.records.concat(response.data.data);
+                    if(response.data.data.length > 0) {
+                        this.records = this.records.concat(response.data.data);
+                    }
                 });
             },
         }
