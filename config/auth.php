@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Projacked\User::class,
+            'model' => Projacked\Models\User::class,
         ],
 
         // 'users' => [
