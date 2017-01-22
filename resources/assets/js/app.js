@@ -1,5 +1,7 @@
 require('./bootstrap');
 
+Vue.component('k-text', require('./components/k-text.vue'));
+
 Vue.component('dashboard', require('./components/Dashboard.vue'));
 Vue.component('login-form', require('./components/Login.vue'));
 
@@ -16,6 +18,7 @@ Vue.component('project_edit', require('./components/Project-edit.vue'));
 
 Vue.component('clients', require('./components/Clients.vue'));
 Vue.component('client', require('./components/Client.vue'));
+Vue.component('client-edit', require('./components/Client-edit.vue'));
 
 const routes = [
   { name: 'login', path: '/', component: require('./pages/login.vue') },
@@ -29,6 +32,19 @@ const routes = [
 const router = new VueRouter({
   routes
 });
+
+router.beforeEach((to, from, next) => {
+    if(app.token) {
+        next();
+        return;
+    }
+    // going anywhere but the login page without a token set
+    if(to.path !== '/') {
+        next('/');
+        return;
+    }
+    next();
+})
 
 window.app = new Vue({
     router,

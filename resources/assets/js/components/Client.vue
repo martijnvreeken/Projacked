@@ -16,14 +16,14 @@
             </span>
           </a>
         </header>
-        <div class="card-content" style="min-height: 7.3em;">
+        <div class="card-content">
             <div class="content">
-                {{ client.address}}<br>{{client.zipcode}} {{client.city}}<br>
+                <p>{{ client.address}}<br>{{client.zipcode}} {{client.city}}</p>
+                <p><a v-if="client.phonenumber" :href="`tel:${client.phonenumber}`">T {{ client.phonenumber }}</a> | <a v-if="client.mobilenumber" :href="`tel:${client.mobilenumber}`">M {{ client.mobilenumber }}</a></p>
             </div>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item">Edit</a>
-          <a class="card-footer-item">Delete</a>
+          <a class="card-footer-item" @click="edit()">Edit</a>
         </footer>
     </div>
 </div>
@@ -31,6 +31,17 @@
 
 <script>
     export default {
-        props: { client: Object }
+        props: { client: Object },
+        methods: {
+            edit() {
+                $('#client-modal-'+this.client.id).addClass('is-active');
+            }
+        }
     }
 </script>
+
+<style>
+.card-content {
+    min-height: 7.3em;
+}
+</style>
