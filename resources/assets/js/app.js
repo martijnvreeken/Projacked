@@ -50,18 +50,22 @@ window.app = new Vue({
     router,
     data() {
         return {
-            token: ''
+            token: '',
+            account: null
         };
     },
     methods: {
         setToken(token) {
             this.token = token;
         },
-        hasToken() {
-            return this.token !== '';
+        setAccount(user) {
+            let account = Vue.extend(require('./components/Account-edit.vue'));
+            this.account = new account();
+            this.account.setData(user);
+            this.account.$mount('#mount-point');
         },
-        getToken() {
-            return this.token;
+        editAccount() {
+            this.account.activate();
         }
     },
     mounted() {

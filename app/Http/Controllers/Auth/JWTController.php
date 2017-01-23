@@ -35,8 +35,8 @@ class JWTController extends Controller {
             // something went wrong whilst attempting to encode the token
             return new JsonResponse(['error' => 'could_not_create_token'], 500);
         }
-
+        $user = JWTAuth::authenticate($token);
         // all good so return the token
-        return new JsonResponse(compact('token'));
+        return new JsonResponse(compact('token', 'user'));
     }
 }

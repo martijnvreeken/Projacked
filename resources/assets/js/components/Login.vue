@@ -36,6 +36,7 @@
                         function (response) {
                             // set the token
                             app.setToken(response.data.token);
+                            app.setAccount(response.data.user);
                             // redirect to dashboard
                             app._router.push('/dashboard');
                         }
