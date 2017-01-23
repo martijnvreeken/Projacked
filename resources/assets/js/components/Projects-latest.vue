@@ -1,7 +1,8 @@
 <template>
     <div class="container box">
         <h4 class="title is-4">Recente projecten <!-- <router-link class="button is-pulled-right" to="/projecten/nieuw"><i class="fa fa-plus" aria-hidden="true"></i></router-link> --></h4>
-        <table class="table is-striped is-narrow">
+        <p v-if="! amount" class="has-text-centered">Geen projecten gevonden</p>
+        <table v-if="amount" class="table is-striped is-narrow">
             <thead>
                 <tr>
                     <th>Klant</th>
@@ -48,6 +49,9 @@
             });
         },
         computed: {
+            amount() {
+                return this.records.length;
+            },
             total_worth() {
                 let total = 0;
                 this.records.forEach(function (project) {
