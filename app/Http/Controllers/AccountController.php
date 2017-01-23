@@ -4,12 +4,12 @@ namespace Projacked\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Projacked\Http\Requests\AccountUpdate;
-use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AccountController extends Controller
 {
     private function getAuthenticatedUser() {
-        return app(JWTAuth::class)->parseToken()->authenticate();
+        return JWTAuth::parseToken()->authenticate();
     }
     public function get() {
         $user = $this->getAuthenticatedUser();

@@ -57,8 +57,11 @@ window.app = new Vue({
     methods: {
         setToken(token) {
             this.token = token;
+        },
+        setAccount(user) {
             let account = Vue.extend(require('./components/Account-edit.vue'));
             this.account = new account();
+            this.account.setData(user);
             this.account.$mount('#mount-point');
         },
         editAccount() {

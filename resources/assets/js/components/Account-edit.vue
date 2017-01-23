@@ -26,14 +26,10 @@
                 email: ''
             } }
         },
-        created() {
-            this.$http.get('/api/account').then(
-                function (response) {
-                    this.account = response.data.user;
-                }
-            );
-        },
         methods: {
+            setData(account) {
+                this.account = account;
+            },
             submit() {
                 if(this.validates()) {
                     this.$http.put('/api/account', this.account).then(
