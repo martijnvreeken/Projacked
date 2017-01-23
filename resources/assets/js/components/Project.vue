@@ -19,10 +19,10 @@
         <div class="card-content" style="min-height: 7.3em;">
             <div class="content">
                 <p>{{ project.description }}</p>
+                <p v-if="project.proposal">{{ project.proposal }}</p>
+                <hr>
                 <p v-if="project.fixed_price > 0">Vaste prijs: <strong>&euro;{{ project.fixed_price }}</strong></p>
                 <p v-if="project.hour_estimate > 0">{{ project.hour_estimate }} uur * &euro; {{ project.hour_rate }}/u = <strong>&euro; {{ project.hour_estimate * project.hour_rate }}</strong></p>
-                <br>
-                <small>{{ project.created_at }}</small>
             </div>
         </div>
         <footer class="card-footer">

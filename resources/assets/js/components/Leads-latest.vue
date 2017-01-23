@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <tr v-for="lead in records">
-                    <td><a @click="edit(lead.id)">{{ lead.client_name }} <i class="fa fa-pencil-square"></i></a></td>
+                    <td><a @click="edit(lead.id)">{{ lead.client }}</a></td>
                     <td v-if="lead.fixed_price > 0"><strong>&euro;{{ lead.fixed_price }}</strong></td>
                     <td v-if="lead.hour_estimate > 0"><strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></td>
                     <td v-if="lead.fixed_price > 0"><i class="fa fa-lock"></i></td>
@@ -20,6 +20,13 @@
                     <lead_edit :lead="lead"></lead_edit>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>Totaal:</th>
+                    <th>&euro; {{ total_worth }}</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </tfoot>
         </table>
         <hr>
         <p v-if="amount" class="has-text-centered"><router-link to="/aanvragen">Bekijk alle</router-link></p>
@@ -45,6 +52,17 @@
             amount() {
                 return this.records.length;
             },
+            total_worth() {
+                let total = 0;
+                this.records.forEach(function (lead) {
+                    if(lead.hour_estimate) {
+                        total += (lead.hour_estimate * lead.hour_rate);
+                    } else {
+                        total += lead.fixed_price;
+                    }
+                });
+                return total;
+            }
         },
         methods: {
             edit(id) {

@@ -5,12 +5,12 @@
           <p class="card-header-title">
             {{ client.name }}
           </p>
-          <a class="card-header-icon" :href="`mailto:${client.email}`">
+          <a v-if="client.email" class="card-header-icon" :href="`mailto:${client.email}`">
             <span class="icon">
               <i class="fa fa-envelope-o"></i>
             </span>
           </a>
-          <a class="card-header-icon" :href="`tel:${client.mobilenumber}`">
+          <a v-if="client.mobilenumber" class="card-header-icon" :href="`tel:${client.mobilenumber}`">
             <span class="icon">
               <i class="fa fa-phone-square"></i>
             </span>
@@ -18,8 +18,12 @@
         </header>
         <div class="card-content">
             <div class="content">
+                <p class="title is-6">{{ client.contact }}</p>
                 <p>{{ client.address}}<br>{{client.zipcode}} {{client.city}}</p>
-                <p><a v-if="client.phonenumber" :href="`tel:${client.phonenumber}`">T {{ client.phonenumber }}</a> | <a v-if="client.mobilenumber" :href="`tel:${client.mobilenumber}`">M {{ client.mobilenumber }}</a></p>
+                <p>
+                    <span v-if="client.mobilenumber"><a :href="`tel:${client.mobilenumber}`">M {{ client.mobilenumber }}</a></span><br>
+                    <span v-if="client.phonenumber"><a :href="`tel:${client.phonenumber}`">T {{ client.phonenumber }}</a></span>
+                </p>
             </div>
         </div>
         <footer class="card-footer">

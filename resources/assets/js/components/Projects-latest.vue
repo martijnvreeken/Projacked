@@ -19,6 +19,13 @@
                     <project_edit :project="project"></project_edit>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>Totaal:</th>
+                    <th>&euro; {{ total_worth }}</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </tfoot>
         </table>
         <hr>
         <p class="has-text-centered"><router-link to="/projecten">Bekijk alle</router-link></p>
@@ -41,6 +48,17 @@
             });
         },
         computed: {
+            total_worth() {
+                let total = 0;
+                this.records.forEach(function (project) {
+                    if(project.hour_estimate) {
+                        total += (project.hour_estimate * project.hour_rate);
+                    } else {
+                        total += project.fixed_price;
+                    }
+                });
+                return total;
+            }
         },
         methods: {
             edit(id) {

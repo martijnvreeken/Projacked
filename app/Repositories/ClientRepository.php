@@ -11,7 +11,8 @@ use Projacked\Models\Lead;
 class ClientRepository {
     public function fromLead(Lead $lead) {
         $data = [
-            'name' => $lead->client_name,
+            'name' => $lead->client,
+            'contact' => $lead->client_name,
             'email' => $lead->client_email
         ];
         if(preg_match('/^(\+31\s?6|06)[0-9\s]+/', $lead->client_phone)) {

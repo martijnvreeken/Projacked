@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lead extends Model
 {
     protected $fillable = [
+        'client',
         'client_name',
         'client_email',
         'client_phone',
@@ -39,5 +40,9 @@ class Lead extends Model
         } else {
             $this->attributes['hour_estimate'] = $value;
         }
+    }
+    
+    public function getCreatedAtAttribute() {
+        return (new \Carbon\Carbon($this->attributes['created_at']))->diffForHumans();
     }
 }
