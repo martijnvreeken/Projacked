@@ -29,7 +29,7 @@
             </tfoot>
         </table>
         <hr>
-        <p class="has-text-centered"><router-link to="/projecten">Bekijk alle</router-link></p>
+        <p v-if="amount" class="has-text-centered"><router-link to="/projecten">Bekijk alle</router-link></p>
     </div>
 </template>
 
