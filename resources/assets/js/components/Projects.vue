@@ -6,7 +6,6 @@
         </div>
         <hr>
         <p v-if="data.from" class="has-text-centered">Toont {{ amount }} projecten van {{ data.total }} totaal</p>
-        <p class="has-text-centered"><router-link to="/projecten/nieuw">Voeg een project toe</router-link></p>
         <p class="has-text-centered"><a v-show="data.next_page_url" @click.prevent="loadMore" href="#" class="button is-primary">Laad meer projecten</a></p>
     </div>
 </template>

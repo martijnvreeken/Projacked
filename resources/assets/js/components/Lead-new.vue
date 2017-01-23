@@ -25,11 +25,6 @@
             <p class="control">
                 <textarea class="textarea" type="text" v-model="proposal" rows="6"></textarea>
             </p>
-            <label class="label">Vast prijs</label>
-            <p class="control">
-                <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="fixed_price">
-            </p>
-            <p>óf...</p>
             <div class="box">
                 <label class="label">Urenschatting</label>
                 <p class="control">
@@ -40,6 +35,11 @@
                     <input class="input" type="text" placeholder="Uurtarief afspraak" v-model="hour_rate">
                 </p>
             </div>
+            <p>óf...</p>
+            <label class="label">Vast prijs</label>
+            <p class="control">
+                <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="fixed_price">
+            </p>
             <button type="button" class="button is-primary" @click="submit">Opslaan</button>
         </form>
     </div>
