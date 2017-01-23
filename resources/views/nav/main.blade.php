@@ -26,14 +26,11 @@
         <span></span>
         <span></span>
         <span></span>
-    </span>
+    </span> -->
 
     <div class="nav-right nav-menu">
-        <a class="nav-item" href="/login">
-            Login
+        <a v-if="token" class="nav-item" @click="editAccount()">
+            Account
         </a>
-        <a class="nav-item" href="/register">
-            Register
-        </a>
-    </div>-->
+    </div>
 </nav>
