@@ -1,7 +1,11 @@
 <template>
     <div>
         <form>
-            <label class="label">Klantnaam</label>
+            <label class="label">Bedrijfsnaam</label>
+            <p class="control">
+                <input class="input" type="text" placeholder="Volledige bedrijfsnaam" v-model="client" required>
+            </p>
+            <label class="label">Contactpersoon</label>
             <p class="control">
                 <input class="input" type="text" placeholder="Volledige naam van de klant" v-model="client_name" required>
             </p>
@@ -45,6 +49,7 @@
     export default {
         data() {
             return {
+                client: '',
                 client_name: '',
                 client_email: '',
                 client_phone: '',

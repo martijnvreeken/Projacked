@@ -8,7 +8,11 @@
     </header>
     <section class="modal-card-body">
         <form>
-            <label class="label">Klantnaam</label>
+            <label class="label">Bedrijfsnaam</label>
+            <p class="control">
+                <input class="input" type="text" placeholder="Volledige bedrijfsnaam" v-model="lead.client" required>
+            </p>
+            <label class="label">Contactpersoon</label>
             <p class="control">
                 <input class="input" type="text" placeholder="Volledige naam van de klant" v-model="lead.client_name" required>
             </p>

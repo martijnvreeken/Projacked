@@ -9,7 +9,8 @@
     <section class="modal-card-body">
         <form>
             <div class="box">
-                <k-text v-model="client.name" title="Klantnaam" placeholder="Volledige naam van de klant"></k-text>
+                <k-text v-model="client.name" title="Klantnaam" placeholder="Volledige bedrijfsnaam"></k-text>
+                <k-text v-model="client.contact" title="Contactpersson" placeholder="Volledige naam van de klant"></k-text>
                 <k-text v-model="client.email" title="Emailadres" placeholder="Emailadres van de klant"></k-text>
                 <k-text v-model="client.phonenumber" title="Telefoonnummer" placeholder="Telefoonnummer van de klant"></k-text>
                 <k-text v-model="client.mobilenumber" title="Mobiel nummer" placeholder="Mobiel nummer van de klant"></k-text>
