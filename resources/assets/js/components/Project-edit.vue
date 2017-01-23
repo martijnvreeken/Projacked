@@ -8,7 +8,7 @@
     </header>
     <section class="modal-card-body">
         <form>
-            <p>{{ project.client.name }}</p>
+            <p class="title is-6">{{ project.client.name }}</p>
             <label class="label">Omschrijving werkzaamheden</label>
             <p class="control">
                 <textarea class="textarea" type="text" v-model="project.description" required rows="6"></textarea>
@@ -17,21 +17,21 @@
             <p class="control">
                 <textarea class="textarea" type="text" v-model="project.proposal" rows="6"></textarea>
             </p>
-            <label class="label">Vast prijs</label>
-            <p class="control">
-                <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="project.fixed_price">
-            </p>
-            <p>óf...</p>
             <div class="box">
-                <label class="label">Uurtarief</label>
-                <p class="control">
-                    <input class="input" type="text" placeholder="Uurtarief afspraak" v-model="project.hour_rate">
-                </p>
                 <label class="label">Urenschatting</label>
                 <p class="control">
                     <input class="input" type="text" placeholder="Grove schatting aantal uren voor project realisatie" v-model="project.hour_estimate">
                 </p>
+                <label class="label">Uurtarief</label>
+                <p class="control">
+                    <input class="input" type="text" placeholder="Uurtarief afspraak" v-model="project.hour_rate">
+                </p>
             </div>
+            <p>óf...</p>
+            <label class="label">Vast prijs</label>
+            <p class="control">
+                <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="project.fixed_price">
+            </p>
         </form>
     </section>
     <footer class="modal-card-foot">

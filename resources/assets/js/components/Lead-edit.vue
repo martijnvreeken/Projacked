@@ -32,11 +32,6 @@
             <p class="control">
                 <textarea class="textarea" type="text" v-model="lead.proposal" rows="6"></textarea>
             </p>
-            <label class="label">Vast prijs</label>
-            <p class="control">
-                <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="lead.fixed_price">
-            </p>
-            <p>óf...</p>
             <div class="box">
                 <label class="label">Uurtarief</label>
                 <p class="control">
@@ -47,6 +42,11 @@
                     <input class="input" type="text" placeholder="Grove schatting aantal uren voor project realisatie" v-model="lead.hour_estimate">
                 </p>
             </div>
+            <p>óf...</p>
+            <label class="label">Vast prijs</label>
+            <p class="control">
+                <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="lead.fixed_price">
+            </p>
         </form>
     </section>
     <footer class="modal-card-foot">

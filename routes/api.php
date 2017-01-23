@@ -38,4 +38,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('/projects', 'ProjectController@store')->name('api.projects.create');
     Route::put('/projects/{project}', 'ProjectController@update')->name('api.projects.update');
     Route::delete('/projects/{project}', 'ProjectController@destroy')->name('api.projects.delete');
+    
+    Route::get('/account', 'AccountController@get');
+    Route::put('/account', 'AccountController@update');
 });
