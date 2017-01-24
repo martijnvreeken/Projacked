@@ -36,7 +36,17 @@ Vue.http.interceptors.push((request, next) => {
     if (app.token) {
         request.headers.set('Authorization', 'Bearer ' + app.token);
     }
-    next();
+
+    next((response) => {
+        if (response.status == 401 && response.body.error == 'token_expired') {
+            app._router.push('/');
+            return;
+        }
+        if(response.headers.map.Authorization) {
+            var token = response.headers.map.Authorization[0];
+            app.setToken(token.split(' ')[1]);
+        }
+    });
 });
 
 /**

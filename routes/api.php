@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('login', 'JWTController@login');
 });
 
-Route::group(['middleware' => 'jwt.auth'], function () {
+Route::group(['middleware' => ['jwt.auth']], function () {
     Route::get('/clients', 'ClientController@get')->name('api.clients');
     Route::post('/clients', 'ClientController@store')->name('api.clients.create');
     Route::put('/clients/{client}', 'ClientController@update')->name('api.clients.update');
