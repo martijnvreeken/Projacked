@@ -59,7 +59,7 @@
                 return true;
             },
             cancel() {
-                $('#client-modal-'+this.client.id).removeClass('is-active');
+                document.getElementById('client-modal-'+this.client.id).className = 'modal';
             },
         }
     }

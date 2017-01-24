@@ -1,5 +1,5 @@
 <template>
-<div class="detailview">
+<div class="detailview column is-half-tablet is-one-third-desktop">
     <div class="card">
         <header class="card-header">
           <p class="card-header-title">
@@ -38,7 +38,7 @@
         props: { client: Object },
         methods: {
             edit() {
-                $('#client-modal-'+this.client.id).addClass('is-active');
+                document.getElementById('client-modal-'+this.client.id).className = 'modal is-active';
             }
         }
     }

@@ -42,7 +42,9 @@
                         }
                     ).catch(
                         function (error) {
-                            $('#'+error.data.error).show();
+                            var classes = document.getElementById(error.data.error).className;
+                            classes += ' is-active';
+                            document.getElementById(error.data.error).className = classes;
                         }
                     );
                 }
@@ -57,5 +59,8 @@
 <style>
     .notification {
         display: none;
+    }
+    .notification.is-active {
+        display: block;
     }
 </style>
