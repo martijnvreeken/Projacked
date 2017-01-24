@@ -66,7 +66,7 @@
         },
         methods: {
             edit(id) {
-                $('#lead-modal-'+id).addClass('is-active');
+                document.getElementById('lead-modal-'+id).className = 'modal is-active';
             }
         }
     }

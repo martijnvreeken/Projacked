@@ -42,17 +42,17 @@
                         }
                     );
                 } else {
-                    $('#invalid').show();
+                    document.getElementById('invalid').className += ' is-active';
                 }
             },
             validates() {
                 return (this.account.name !== '') && (this.account.email !== '');
             },
             cancel() {
-                $('#account-modal').removeClass('is-active');
+                document.getElementById('account-modal').className = 'modal';
             },
             activate() {
-                $('#account-modal').addClass('is-active');
+                document.getElementById('account-modal').className = 'modal is-active';
             },
         }
     }
@@ -61,5 +61,8 @@
 <style>
     .notification {
         display: none;
+    }
+    .notification.is-active {
+        display: block;
     }
 </style>

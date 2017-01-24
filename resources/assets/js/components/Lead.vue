@@ -37,7 +37,7 @@
         props: { lead: Object },
         methods: {
             edit() {
-                $('#lead-modal-'+this.lead.id).addClass('is-active');
+                document.getElementById('lead-modal-'+this.lead.id).className = 'modal is-active';
             }
         }
     }

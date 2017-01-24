@@ -112,7 +112,7 @@
                 return true;
             },
             cancel() {
-                $('#lead-modal-'+this.lead.id).removeClass('is-active');
+                document.getElementById('lead-modal-'+this.lead.id).className = 'modal';
             },
         }
     }

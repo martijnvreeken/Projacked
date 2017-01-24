@@ -80,7 +80,7 @@
                 return true;
             },
             cancel() {
-                $('#project-modal-'+this.project.id).removeClass('is-active');
+                document.getElementById('project-modal-'+this.project.id).className = 'modal';
             },
         }
     }
