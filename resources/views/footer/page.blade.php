@@ -5,12 +5,12 @@
                     <aside class="menu">
                         <p class="menu-label">Menu</p>
                         <ul class="menu-list">
-                            <li><a>Home</a></li>
-                            <li><a>Maatwerk</a></li>
-                            <li><a>Databases</a></li>
-                            <li><a>Webdevelopment</a></li>
-                            <li><a>Werkwijze</a></li>
-                            <li><a>Offerte</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="maatwerk">Maatwerk</a></li>
+                            <li><a href="databases">Databases</a></li>
+                            <li><a href="webdevelopment">Webdevelopment</a></li>
+                            <li><a href="werkwijze">Werkwijze</a></li>
+                            <li><a href="offerte">Offerte</a></li>
                         </ul>
                     </aside>
                 </div>
@@ -24,7 +24,10 @@
                             <a>info@kapibara.media</a>
                             <br>
                             <a>06 2543 1044</a>
-                            <br> Henri Dunantlaan 21, 3434CJ Nieuwegein</p>
+                            <br> Henri Dunantlaan 21, 3434CJ Nieuwegein
+                        </p>
+                        <p>KvK te Utrecht: 67362656<br>
+                        Belastingnummer: NL186456621B02</p>
                     </div>
                 </div>
             </div>

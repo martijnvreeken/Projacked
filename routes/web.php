@@ -18,3 +18,5 @@ Route::get('/crm', function () {
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/{slug}', 'PageController@get');
