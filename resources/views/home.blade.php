@@ -87,7 +87,7 @@ Kapibara werkt met
 </h1>
                 <div class="columns">
                     <div class="column">
-                        <figure class="image is-128x128" style="display: inline-block;"><img src="/storage/images/laravel_logo.png" alt="Laravel"></figure>
+                        <figure class="image is-128x128" style="display: inline-block;"><img src="/images/laravel_logo.png" alt="Laravel"></figure>
                         <h3 class="title">
 <!-- <div class="tool logo"><img src="/images/laravel_logo.png" alt="Laravel" class="logo"></div><br> -->
 Laravel
@@ -97,7 +97,7 @@ Laravel
                 <p><a class="button is-info" href="https://laravel.com/">Lees meer</a></p>
             </div>
             <div class="column">
-                <figure class="image is-128x128" style="display: inline-block;"><img src="/storage/images/vuejs_logo.png" alt="Vuejs"></figure>
+                <figure class="image is-128x128" style="display: inline-block;"><img src="/images/vuejs_logo.png" alt="Vuejs"></figure>
                 <h3 class="title">
 <!-- <div class="tool logo"><img src="/images/vuejs_logo.png" alt="Vuejs" class="logo"></div><br> -->
 Vue
@@ -107,7 +107,7 @@ Vue
                 <p><a class="button is-info" href="https://vuejs.org/">Lees meer</a></p>
             </div>
             <div class="column">
-                <figure class="image is-128x128" style="display: inline-block;"><img src="/storage/images/wordpress_logo.png" alt="Wordpress"></figure>
+                <figure class="image is-128x128" style="display: inline-block;"><img src="/images/wordpress_logo.png" alt="Wordpress"></figure>
                 <h3 class="title">
 <!-- <div class="tool logo"><img src="/images/wordpress_logo.png" alt="Wordpress" class="logo"></div><br> -->
 Wordpress
