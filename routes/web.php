@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/crm', function () {
+    return view('projacked');
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });

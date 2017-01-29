@@ -1,0 +1,25 @@
+
+// Font awesome
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+
+// Variables
+@import "palette";
+@import "variables";
+
+// Bulma
+@import "node_modules/bulma/bulma.sass";
+
+.hero.is-light {
+	a.button {
+		color: $white;
+	}
+	strong {
+		color: $white;
+	}
+}
+.hero-head {
+	.subtitle.logo {
+		text-transform: uppercase;
+		margin-top: 6px;
+	}
+}
