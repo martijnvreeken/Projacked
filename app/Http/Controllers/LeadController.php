@@ -39,4 +39,10 @@ class LeadController extends Controller
         $lead->delete();
         return new JsonResponse($project, 201);
     }
+    
+    public function create(LeadStore $request) {
+        $data = array_filter($request->all());
+        $lead = Lead::create($data);
+        return view('pages.confirm');
+    }
 }

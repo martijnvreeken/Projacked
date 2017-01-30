@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/crm', function () {
+    return view('projacked');
 });
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/{slug}', 'PageController@get');
+Route::post('/offerte', 'LeadController@create');
