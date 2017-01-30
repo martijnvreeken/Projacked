@@ -7,7 +7,7 @@
             </div>
             <div class="nav-center">
                 <span class="nav-item">
-                    <a class="offerte">
+                    <a class="offerte" href="offerte">
                         <span>Offerte</span>
                     </a>
                 </span>

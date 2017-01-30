@@ -1,10 +1,11 @@
 @extends('layouts.page')
+@section('title', 'Agile')
 @section('content')
     <article class="section">
         <div class="container">
-            <header class="heading">
-                <h1 class="title">Werkwijze</h1>
-            </header>
+<!--            <header class="heading">
+                <h1 class="title">@yield('title')</h1>
+            </header>-->
             <div class="content">
                 <p>Hoe Kapibara projecten realiseert komt niet uit de lucht vallen. We hebben veel ervaring in software ontwikkeling en maken gebruik van de ervaringen van anderen. Daarom werken wij Agile. Wat zoveel wil zeggen als: ons proces van ontwikkelen van software is zo ingericht dat het makkelijk is om te sturen. Zowel door u, de opdrachtgever, als door ons, de aannemer.</p>
                 <h3 class="title is-4">Stap 1: Vaststelling</h3>
@@ -38,7 +39,7 @@
                     <li>het lijkt een carte-blanche<br>op het eerste gezicht lijkt het misschien of u ons een blanco cheque overhandigt, wij beloven immers niet het product te bouwen tegen een vast bedrag. Echter andere aannemers die het project wellicht fixed-price aanbieden zullen (als ze slim zijn) een marge in de prijs opnemen om met onvoorziene zaken en voortschreidend inzicht om te gaan. Die marge kunt u bij ons gebruiken om features mee te ontwikkelen. En dat kunnen we doen, door de kort-cyclische aanpak. Na iedere sprint is er gelegenheid tot bijsturen.</li>
                 </ul>
             </div>
-            @include('partial.offerte')
+            @include('partial.offerte', ['subject' => 'Agile webdevelopment'])
             @include('footer.share')
         </div>
     </article>

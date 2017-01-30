@@ -1,4 +1,5 @@
 @extends('layouts.index')
+@section('title', 'Kapibara Media')
 @section('content')
 <a id="diensten"></a>
 <section class="section">
@@ -75,9 +76,9 @@
             <h1 class="title">Caching</h1>
         </div>
         <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam enim labore ea possimus in obcaecati exercitationem excepturi hic eius corrupti repellat deserunt deleniti tempora tenetur eum, amet ex nesciunt quis.</p>
+            <p>Bij grotere websites en webapplicaties met een hoog aantal bezoekers is caching onvermijdelijk. De standaard oplossingen zijn dan niet altijd toereikend. Kapibara heeft ervaring met reversed proxy oplossingen zoals Varnish.</p>
         </div>
-        @include('partial.offerte')
+        @include('partial.offerte', ['subject'=>'Caching'])
     </div>
 </section>
 <section class="hero is-light">
@@ -94,7 +95,7 @@
                         </h3>
                         <p>Marktleidend PHP platform.</p>
                         <br>
-                        <p><a class="button is-info" href="https://laravel.com/">Lees meer</a></p>
+                        <p><a class="button is-info" href="https://laravel.com/" target="_new">Lees meer</a></p>
                     </div>
                     <div class="column">
                         <figure class="image is-128x128" style="display: inline-block;"><img src="/images/vuejs_logo.png" alt="Vuejs"></figure>
@@ -103,7 +104,7 @@
                         </h3>
                         <p>Javascript framework voor hipsters.</p>
                         <br>
-                        <p><a class="button is-info" href="https://vuejs.org/">Lees meer</a></p>
+                        <p><a class="button is-info" href="https://vuejs.org/" target="_new">Lees meer</a></p>
                     </div>
                     <div class="column">
                         <figure class="image is-128x128" style="display: inline-block;"><img src="/images/wordpress_logo.png" alt="Wordpress"></figure>
@@ -112,7 +113,7 @@
                         </h3>
                         <p>Meest gebruiksvriendelijke CMS sinds 2003.</p>
                         <br>
-                        <p><a class="button is-info" href="https://nl.wordpress.org/">Lees meer</a></p>
+                        <p><a class="button is-info" href="https://nl.wordpress.org/" target="_new">Lees meer</a></p>
                     </div>
                 </div>
         </div>
@@ -124,9 +125,9 @@
             <h1 class="title">Maatwerk zoekmachine met Elasticsearch</h1>
         </div>
         <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed perferendis illum nulla. Voluptatum praesentium sit non cumque iure, veritatis, fugit, nihil officia, eveniet ut eum aliquid. Deleniti accusantium molestias, maxime.</p>
+            <p>Bij websites en webapplicaties met grote hoeveelheden data of pagina's zijn standaard oplossingen voor zoeken niet altijd toereikend. Kapibara heeft ervaring met het inzetten van Google Site Search of Elasticsearch.</p>
         </div>
-        @include('partial.offerte')
+        @include('partial.offerte', ['subject'=>'Elasticsearch'])
     </div>
 </section>
 @endsection

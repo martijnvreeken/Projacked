@@ -1,9 +1,6 @@
 <html>
 
-<head>
-    <title>Kapibara Media</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
+@include('partial.head')
 
 <body>
     @include('header.page')

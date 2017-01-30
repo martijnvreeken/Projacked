@@ -10,16 +10,22 @@
 @import "node_modules/bulma/bulma.sass";
 
 .hero.is-light {
-	a.button {
-		color: $white;
-	}
-	strong {
-		color: $white;
-	}
+    a.button {
+        color: $white;
+    }
+    strong {
+        color: $white;
+    }
 }
 .hero-head {
-	.subtitle.logo {
-		text-transform: uppercase;
-		margin-top: 6px;
-	}
+    .subtitle.logo {
+        text-transform: uppercase;
+        margin-top: 6px;
+    }
+}
+quote {
+    margin: $size-6;
+    font-size: $size-3;
+    display: inline-block;
+    line-height: 1em;
 }

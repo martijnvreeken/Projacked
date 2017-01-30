@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/{slug}', 'PageController@get');
+Route::post('/offerte', 'LeadController@create');
