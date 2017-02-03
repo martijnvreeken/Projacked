@@ -8,8 +8,8 @@
                 {!! Form::open(['url' => '/offerte', 'method' => 'post']) !!}
                 <label class="label">Omschrijving</label>
                 <p class="control">
-                    <textarea class="textarea" type="text" name="description" required rows="6"></textarea>
                     <span class="help is-info">Omschrijf uw wensen kort, maar zo volledig mogelijk</span>
+                    <textarea class="textarea" type="text" name="description" required rows="6"></textarea>
                 </p>
                 <label class="label">Bedrijfsnaam</label>
                 <p class="control">
