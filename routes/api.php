@@ -31,6 +31,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::post('/leads', 'LeadController@store')->name('api.leads.create');
     Route::put('/leads/{lead}', 'LeadController@update')->name('api.leads.update');
     Route::delete('/leads/{lead}', 'LeadController@destroy')->name('api.leads.delete');
+    Route::post('/quotations', 'QuotationController@create')->name('api.quotations.create');
 
     Route::post('/leads/promote', 'LeadController@promote')->name('api.leads.promote');
 
@@ -41,4 +42,9 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     
     Route::get('/account', 'AccountController@get');
     Route::put('/account', 'AccountController@update');
+    
+    Route::get('/texts', 'QuotationTextController@get')->name('api.texts');
+//    Route::post('/texts', 'QuotationTextController@store')->name('api.texts.create');
+    Route::put('/texts/{text}', 'QuotationTextController@update')->name('api.texts.update');
+//    Route::delete('/texts/{text}', 'QuotationTextController@delete')->name('api.texts.delete');
 });

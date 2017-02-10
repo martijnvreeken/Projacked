@@ -28,7 +28,7 @@
                         </span><br>
                         Databases
                     </h2>
-                    <p>Uw data vailig online ontsluiten en integreren in externe systemen via een maatwerk API</p>
+                    <p>Uw data veilig online ontsluiten en integreren in externe systemen via een maatwerk API</p>
                     <hr>
                     <p>
                         <a href="databases" class="button is-info">Lees meer</a>

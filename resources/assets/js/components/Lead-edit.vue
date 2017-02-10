@@ -50,7 +50,8 @@
         </form>
     </section>
     <footer class="modal-card-foot">
-        <a type="button" class="button is-primary" @click="submit">Opslaan</a>
+        <a type="button" class="button" @click="submit">Opslaan</a>
+        <a class="button is-primary" @click="quote()">Offerte</a>
         <a class="button is-success" @click="promote()">Akkoord</a>
         <a class="button is-danger" @click="remove()">Verwijderen</a>
     </footer>
@@ -101,6 +102,18 @@
                             this.$parent.records.splice(index, 1);
                         }
                         app._router.push('/projecten');
+                    }
+                ).catch(
+                    function (error) {
+                        console.log(error);
+                    }
+                );
+            },
+            quote() {
+                this.$http.post('/api/quotations', this.lead).then(
+                    function (response) {
+                        // successfuly created the quotation
+                        this.cancel();
                     }
                 ).catch(
                     function (error) {

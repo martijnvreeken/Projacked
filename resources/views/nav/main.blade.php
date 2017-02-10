@@ -7,6 +7,7 @@
         <router-link to="/aanvragen" class="nav-item" active-class="is-active">Aanvragen</router-link>
         <router-link to="/projecten" class="nav-item" active-class="is-active">Projecten</router-link>
         <router-link to="/klanten" class="nav-item" active-class="is-active">Klanten</router-link>
+        <router-link to="/offerte-teksten" class="nav-item" active-class="is-active">Offerte teksten</router-link>
     </div>
 
 <!--    <div class="nav-center">

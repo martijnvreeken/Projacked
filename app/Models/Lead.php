@@ -3,9 +3,12 @@
 namespace Projacked\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Lead extends Model
 {
+    use Notifiable;
+
     protected $fillable = [
         'client',
         'client_name',
@@ -15,7 +18,8 @@ class Lead extends Model
         'proposal',
         'fixed_price',
         'hour_rate',
-        'hour_estimate'
+        'hour_estimate',
+        'quotation_uri'
     ];
     
     public function setFixedPriceAttribute($value) {
@@ -44,5 +48,9 @@ class Lead extends Model
     
     public function getCreatedAtAttribute() {
         return (new \Carbon\Carbon($this->attributes['created_at']))->diffForHumans();
+    }
+    
+    public function getEmailAttribute() {
+        return $this->attributes['client_email'];
     }
 }

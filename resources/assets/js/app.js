@@ -20,12 +20,17 @@ Vue.component('clients', require('./components/Clients.vue'));
 Vue.component('client', require('./components/Client.vue'));
 Vue.component('client-edit', require('./components/Client-edit.vue'));
 
+Vue.component('quotation-texts', require('./components/QuotationTexts.vue'));
+Vue.component('q-text', require('./components/QuotationText.vue'));
+Vue.component('q-text_edit', require('./components/QuotationText-edit.vue'));
+
 const routes = [
   { name: 'login', path: '/', component: require('./pages/login.vue') },
   { name: 'home', path: '/dashboard', component: require('./pages/dashboard.vue') },
   { name: 'clients', path: '/klanten', component: require('./pages/clients.vue') },
   { name: 'projects', path: '/projecten', component: require('./pages/projects.vue') },
   { name: 'leads', path: '/aanvragen', component: require('./pages/leads.vue') },
+  { name: 'texts', path: '/offerte-teksten', component: require('./pages/texts.vue') },
   { name: 'new_lead', path: '/aanvragen/nieuw', component: require('./pages/lead-new.vue') },
 ];
 
