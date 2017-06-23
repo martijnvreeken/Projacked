@@ -32,7 +32,7 @@
         methods: {
             login() {
                 if(this.validates()) {
-                    this.$http.post('/api/login', this.$data).then(
+                    axios.post('/api/login', this.$data).then(
                         function (response) {
                             // set the token
                             app.setToken(response.data.token);

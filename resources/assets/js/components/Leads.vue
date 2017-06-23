@@ -2,8 +2,8 @@
     <div class="container">
         <p v-if="! amount" class="has-text-centered">Geen aanvragen gevonden</p>
         <div class="columns is-multiline">
-            <lead v-for="lead in records" :lead="lead"></lead>
-            <lead_edit v-for="lead in records" :lead="lead"></lead_edit>
+            <lead v-for="lead in records" :lead="lead" :key="lead.id"></lead>
+            <lead_edit v-for="lead in records" :lead="lead" :key="lead.id"></lead_edit>
         </div>
         <hr>
         <p v-if="amount" class="has-text-centered">Toont {{ amount }} aanvragen van {{ data.total }} totaal</p>
@@ -24,7 +24,7 @@
             }
         },
         created() {
-            this.$http.get(this.api_url).then((response) => {
+            axios.get(this.api_url).then((response) => {
                 this.data = response.data;
                 if(response.data.data.length > 0) {
                     this.records = this.records.concat(response.data.data);
@@ -38,7 +38,7 @@
         },
         methods: {
             loadMore() {
-                this.$http.get(this.data.next_page_url).then((response) => {
+                axios.get(this.data.next_page_url).then((response) => {
                     this.data = response.data;
                     if(response.data.data.length > 0) {
                         this.records = this.records.concat(response.data.data);

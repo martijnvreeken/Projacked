@@ -67,7 +67,7 @@
         methods: {
             submit() {
                 if(this.validates()) {
-                    this.$http.put('/api/leads/'+this.lead.id, this.lead).then(
+                    axios.put('/api/leads/'+this.lead.id, this.lead).then(
                         function (response) {
                             this.cancel();
                         }
@@ -79,7 +79,7 @@
                 }
             },
             remove() {
-                this.$http.delete('/api/leads/'+this.lead.id).then(
+                axios.delete('/api/leads/'+this.lead.id).then(
                     function (response) {
                         var index = this.$parent.records.indexOf(this.lead);
                         if(index > -1) {
@@ -94,7 +94,7 @@
                 );
             },
             promote() {
-                this.$http.post('/api/leads/promote', this.lead).then(
+                axios.post('/api/leads/promote', this.lead).then(
                     function (response) {
                         // successfuly promoted the lead, it's no longer available
                         var index = this.$parent.records.indexOf(this.lead);
@@ -110,7 +110,7 @@
                 );
             },
             quote() {
-                this.$http.post('/api/quotations', this.lead).then(
+                axios.post('/api/quotations', this.lead).then(
                     function (response) {
                         // successfuly created the quotation
                         this.cancel();

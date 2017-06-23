@@ -50,7 +50,7 @@
         methods: {
             submit() {
                 if(this.validates()) {
-                    this.$http.put('/api/projects/'+this.project.id, this.project).then(
+                    axios.put('/api/projects/'+this.project.id, this.project).then(
                         function (response) {
                             this.cancel();
                         }
@@ -62,7 +62,7 @@
                 }
             },
             remove() {
-                this.$http.delete('/api/projects/'+this.project.id).then(
+                axios.delete('/api/projects/'+this.project.id).then(
                     function (response) {
                         var index = this.$parent.records.indexOf(this.project);
                         if(index > -1) {

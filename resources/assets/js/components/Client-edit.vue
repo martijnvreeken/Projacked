@@ -44,7 +44,7 @@
         methods: {
             submit() {
                 if(this.validates()) {
-                    this.$http.put('/api/clients/'+this.client.id, this.client).then(
+                    axios.put('/api/clients/'+this.client.id, this.client).then(
                         function (response) {
                             this.cancel();
                         }

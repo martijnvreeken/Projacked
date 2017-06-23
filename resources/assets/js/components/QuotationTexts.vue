@@ -8,9 +8,11 @@
                     <th>&nbsp;</th>
                 </tr>
             </thead>
-            <q-text v-for="text in records" :text="text"></q-text>
-            <q-text_edit v-for="text in records" :text="text"></q-text_edit>
+            <tbody>
+            <tr is="q-text" v-for="text in records" :text="text"></tr>
+            </tbody>
         </table>
+        <q-text_edit v-for="text in records" :text="text" :key="text.id"></q-text_edit>
     </div>
 </template>
 
@@ -26,7 +28,7 @@
             }
         },
         created() {
-            this.$http.get(this.api_url).then((response) => {
+            axios.get(this.api_url).then((response) => {
                 this.data = response;
                 if(response.data.length > 0) {
                     this.records = this.records.concat(response.data);

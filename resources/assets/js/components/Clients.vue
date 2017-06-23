@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="columns is-multiline">
-            <client v-for="client in records" :client="client"></client>
-            <client-edit v-for="client in records" :client="client"></client-edit>
+            <client v-for="client in records" :client="client" :key="client.id"></client>
+            <client-edit v-for="client in records" :client="client" :key="client.id"></client-edit>
         </div>
         <hr>
         <p v-if="data.from" class="has-text-centered">Toont {{ amount }} klanten van {{ data.total }} totaal</p>
@@ -22,7 +22,7 @@
             }
         },
         created() {
-            this.$http.get(this.api_url).then((response) => {
+            axios.get(this.api_url).then((response) => {
                 this.data = response.data;
                 this.records = this.records.concat(response.data.data);
             });
@@ -34,7 +34,7 @@
         },
         methods: {
             loadMore() {
-                this.$http.get(this.data.next_page_url).then((response) => {
+                axios.get(this.data.next_page_url).then((response) => {
                     this.data = response.data;
                     this.records = this.records.concat(response.data.data);
                 });

@@ -32,7 +32,7 @@
             },
             submit() {
                 if(this.validates()) {
-                    this.$http.put('/api/account', this.account).then(
+                    axios.put('/api/account', this.account).then(
                         function (response) {
                             this.cancel();
                         }

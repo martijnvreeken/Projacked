@@ -63,7 +63,7 @@
         methods: {
             submit() {
                 if(this.validates()) {
-                    this.$http.post('/api/leads', this.$data).then(
+                    axios.post('/api/leads', this.$data).then(
                         function (response) {
                             app._router.push('/aanvragen');
                         }

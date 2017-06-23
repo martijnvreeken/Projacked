@@ -33,7 +33,7 @@
         methods: {
             submit() {
                 if(this.validates()) {
-                    this.$http.put('/api/texts/'+this.text.id, this.text).then(
+                    axios.put('/api/texts/'+this.text.id, this.text).then(
                         function (response) {
                             this.cancel();
                         }

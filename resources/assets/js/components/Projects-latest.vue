@@ -44,7 +44,7 @@
             }
         },
         created() {
-            this.$http.get(this.api_url).then((response) => {
+            axios.get(this.api_url).then((response) => {
                 this.records = response.data.data;
             });
         },

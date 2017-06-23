@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="columns is-multiline">
-            <project v-for="project in records" :project="project"></project>
-            <project_edit v-for="project in records" :project="project"></project_edit>
+            <project v-for="project in records" :project="project" :key="project.id"></project>
+            <project_edit v-for="project in records" :project="project" :key="project.id"></project_edit>
         </div>
         <hr>
         <p v-if="data.from" class="has-text-centered">Toont {{ amount }} projecten van {{ data.total }} totaal</p>
@@ -22,7 +22,7 @@
             }
         },
         created() {
-            this.$http.get(this.api_url).then((response) => {
+            axios.get(this.api_url).then((response) => {
                 this.data = response.data;
                 this.records = this.records.concat(response.data.data);
             });
@@ -34,7 +34,7 @@
         },
         methods: {
             loadMore() {
-                this.$http.get(this.data.next_page_url).then((response) => {
+                axios.get(this.data.next_page_url).then((response) => {
                     this.data = response.data;
                     this.records = this.records.concat(response.data.data);
                 });
