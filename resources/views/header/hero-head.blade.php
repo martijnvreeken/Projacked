@@ -3,7 +3,11 @@
     <header class="nav">
         <div class="container">
             <div class="nav-left">
-                <span class="subtitle is-3 logo">kapibara</span>
+              <span class="subtitle is-3 logo">
+                <a href="/">
+                    kapibara
+                </a>
+              </span>
             </div>
             <div class="nav-center">
                 <span class="nav-item">
@@ -25,4 +29,3 @@
         </div>
     </header>
 </div>
-

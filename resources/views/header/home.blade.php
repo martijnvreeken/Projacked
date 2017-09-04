@@ -3,6 +3,7 @@
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
             <div class="container has-text-centered">
+                <img src="/images/logo.png" alt="Kapibara Media logo">
                 <h1 class="title is-2">
                 Maatwerk webdevelopment
                 </h1>
