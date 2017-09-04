@@ -21,9 +21,9 @@
                     <div class="content">
                         <p>Kapibara Media
                             <br>
-                            <a>info@kapibara.media</a>
+                            <a href="mailto:info@kapibara.media">info@kapibara.media</a>
                             <br>
-                            <a>06 2543 1044</a>
+                            <a href="tel:0031625431044">06 2543 1044</a>
                             <br> Henri Dunantlaan 21, 3434CJ Nieuwegein
                         </p>
                         <p>KvK te Utrecht: 67362656<br>
