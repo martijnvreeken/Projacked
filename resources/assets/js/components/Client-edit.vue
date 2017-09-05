@@ -1,5 +1,5 @@
 <template>
-<div class="modal" :id="`client-modal-${client.id}`">
+<div class="modal is-active" :id="`client-modal-${client.id}`" v-if="show">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -39,14 +39,21 @@
 <script>
     export default {
         props: {
-            client: Object
+            client: Object,
+            show: false
+        },
+        data() {
+          return {
+            visible: this.show,
+          };
         },
         methods: {
             submit() {
                 if(this.validates()) {
+                    const $this = this;
                     axios.put('/api/clients/'+this.client.id, this.client).then(
                         function (response) {
-                            this.cancel();
+                            $this.cancel();
                         }
                     ).catch(
                         function (error) {
@@ -59,7 +66,7 @@
                 return true;
             },
             cancel() {
-                document.getElementById('client-modal-'+this.client.id).className = 'modal';
+                this.$emit('hide');
             },
         }
     }

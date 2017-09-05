@@ -12,12 +12,12 @@
             </thead>
             <tbody>
                 <tr v-for="lead in records">
-                    <td><a @click="edit(lead.id)">{{ lead.client }}</a></td>
+                    <td><a @click="edit(lead)">{{ lead.client }}</a></td>
                     <td v-if="lead.fixed_price > 0"><strong>&euro;{{ lead.fixed_price }}</strong></td>
                     <td v-if="lead.hour_estimate > 0"><strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></td>
                     <td v-if="lead.fixed_price > 0"><i class="fa fa-lock"></i></td>
                     <td v-if="lead.hour_estimate > 0"><i class="fa fa-unlock"></i></td>
-                    <lead_edit :lead="lead"></lead_edit>
+                    <lead-edit :lead="lead"></lead-edit>
                 </tr>
             </tbody>
             <tfoot>
@@ -34,9 +34,15 @@
 </template>
 
 <script>
+    import { eventBus } from '../app';
+    import form from './Lead-edit';
+
     export default {
         props: {
             api_url: String,
+        },
+        components: {
+            leadEdit: form
         },
         data() {
             return {
@@ -44,6 +50,18 @@
             }
         },
         created() {
+            let $this = this;
+            eventBus.$on('newLead', (event) => {
+                $this.records = $this.records.concat(event.lead);
+            });
+            eventBus.$on('leadDeleted', (event) => {
+                let index = $this.records.indexOf(event.lead);
+                console.log('lead deleted in latest: ' + index);
+                if(index > -1) {
+                    $this.records.splice(index, 1);
+                }
+            });
+
             axios.get(this.api_url).then((response) => {
                 this.records = response.data.data;
             });
@@ -65,10 +83,9 @@
             }
         },
         methods: {
-            edit(id) {
-                document.getElementById('lead-modal-'+id).className = 'modal is-active';
+            edit(lead) {
+                // show modal somehow
             }
         }
     }
 </script>
-

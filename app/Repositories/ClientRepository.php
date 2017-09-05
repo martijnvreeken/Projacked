@@ -9,6 +9,13 @@ use Projacked\Models\Lead;
  * @author martijn
  */
 class ClientRepository {
+    /**
+    * creates a client from a Lead
+    *
+    * @param Projacked\Models\Lead $lead
+    *
+    * @return Projacked\Models\Client
+    */
     public function fromLead(Lead $lead) {
         $data = [
             'name' => $lead->client,

@@ -1,5 +1,5 @@
 <template>
-<div class="modal" :id="`project-modal-${project.id}`">
+<div class="modal is-active" :id="`project-modal-${project.id}`" v-if="show">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -43,16 +43,25 @@
 </template>
 
 <script>
+    import { eventBus } from '../app';
+
     export default {
         props: {
-            project: Object
+            project: Object,
+            show: false
+        },
+        data() {
+            return {
+                visible: this.show
+            };
         },
         methods: {
             submit() {
                 if(this.validates()) {
+                    const $this = this;
                     axios.put('/api/projects/'+this.project.id, this.project).then(
                         function (response) {
-                            this.cancel();
+                            $this.cancel();
                         }
                     ).catch(
                         function (error) {
@@ -62,13 +71,11 @@
                 }
             },
             remove() {
+                let $this = this;
                 axios.delete('/api/projects/'+this.project.id).then(
                     function (response) {
-                        var index = this.$parent.records.indexOf(this.project);
-                        if(index > -1) {
-                            this.$parent.records.splice(index, 1);
-                        }
-                        this.cancel();
+                        eventBus.$emit('projectDeleted', { project: $this.project });
+                        $this.cancel();
                     }
                 ).catch(
                     function (error) {
@@ -80,7 +87,7 @@
                 return true;
             },
             cancel() {
-                document.getElementById('project-modal-'+this.project.id).className = 'modal';
+                this.$emit('hide');
             },
         }
     }

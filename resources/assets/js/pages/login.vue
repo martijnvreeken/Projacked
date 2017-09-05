@@ -3,5 +3,10 @@
 </template>
 
 <script>
-    export default {}
+    import login from '../components/Login';
+    export default {
+        components: {
+            loginForm: login
+        }
+    }
 </script>

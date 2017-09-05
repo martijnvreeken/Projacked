@@ -2,7 +2,6 @@
     <div class="container">
         <div class="columns is-multiline">
             <project v-for="project in records" :project="project" :key="project.id"></project>
-            <project_edit v-for="project in records" :project="project" :key="project.id"></project_edit>
         </div>
         <hr>
         <p v-if="data.from" class="has-text-centered">Toont {{ amount }} projecten van {{ data.total }} totaal</p>
@@ -11,6 +10,9 @@
 </template>
 
 <script>
+    import { eventBus } from '../app';
+    import project from './Project';
+
     export default {
         props: {
             api_url: String,
@@ -21,7 +23,17 @@
                 records: [],
             }
         },
+        components: {
+            project: project
+        },
         created() {
+            let $this = this;
+            eventBus.$on('projectDeleted', (event) => {
+                let index = $this.records.indexOf(event.project);
+                if(index > -1) {
+                    $this.records.splice(index, 1);
+                }
+            });
             axios.get(this.api_url).then((response) => {
                 this.data = response.data;
                 this.records = this.records.concat(response.data.data);

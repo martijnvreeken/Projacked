@@ -38,37 +38,7 @@ if (token) {
 
 Vue.component('k-text', require('./components/k-text.vue'));
 
-Vue.component('dashboard', require('./components/Dashboard.vue'));
-Vue.component('login-form', require('./components/Login.vue'));
-
-Vue.component('leads', require('./components/Leads.vue'));
-Vue.component('latest-leads', require('./components/Leads-latest.vue'));
-Vue.component('lead', require('./components/Lead.vue'));
-Vue.component('lead_new', require('./components/Lead-new.vue'));
-Vue.component('lead_edit', require('./components/Lead-edit.vue'));
-
-Vue.component('projects', require('./components/Projects.vue'));
-Vue.component('latest-projects', require('./components/Projects-latest.vue'));
-Vue.component('project', require('./components/Project.vue'));
-Vue.component('project_edit', require('./components/Project-edit.vue'));
-
-Vue.component('clients', require('./components/Clients.vue'));
-Vue.component('client', require('./components/Client.vue'));
-Vue.component('client-edit', require('./components/Client-edit.vue'));
-
-Vue.component('quotation-texts', require('./components/QuotationTexts.vue'));
-Vue.component('q-text', require('./components/QuotationText.vue'));
-Vue.component('q-text_edit', require('./components/QuotationText-edit.vue'));
-
-const routes = [
-  { name: 'login', path: '/', component: require('./pages/login.vue') },
-  { name: 'home', path: '/dashboard', component: require('./pages/dashboard.vue') },
-  { name: 'clients', path: '/klanten', component: require('./pages/clients.vue') },
-  { name: 'projects', path: '/projecten', component: require('./pages/projects.vue') },
-  { name: 'leads', path: '/aanvragen', component: require('./pages/leads.vue') },
-  { name: 'texts', path: '/offerte-teksten', component: require('./pages/texts.vue') },
-  { name: 'new_lead', path: '/aanvragen/nieuw', component: require('./pages/lead-new.vue') },
-];
+import { routes } from './routes';
 
 const router = new VueRouter({
   routes // short for `routes: routes`
@@ -89,7 +59,6 @@ router.beforeEach((to, from, next) => {
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
-    console.info(config.url);
     return config;
   }, function (error) {
     // Do something with request error
@@ -98,7 +67,6 @@ axios.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-    console.info(response.request.responseURL);
     if (response.headers.authorization) {
       let token = response.headers.authorization.split(' ');
       window.app.setToken(token[1]);
@@ -109,9 +77,10 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
   });
 
+export const eventBus = new Vue();
+
 window.app = new Vue({
     router,
-    // template: '<router-view></router-view>',
     data() {
         return {
             token: '',
@@ -120,7 +89,6 @@ window.app = new Vue({
     },
     methods: {
         setToken(token) {
-            console.info('Setting auth token');
             this.token = token;
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         },
@@ -133,7 +101,5 @@ window.app = new Vue({
         editAccount() {
             this.account.activate();
         }
-    },
-    mounted() {
     }
 }).$mount('#app');

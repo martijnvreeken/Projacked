@@ -26,19 +26,25 @@
             </div>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" @click="edit()">Edit</a>
+          <a class="card-footer-item" @click="edit = true">Edit</a>
         </footer>
     </div>
+    <lead-edit :lead="lead" :key="lead.id" :show="edit" @hide="edit = false"></lead-edit>
 </div>
 </template>
 
 <script>
+    import form from './Lead-edit';
+
     export default {
         props: { lead: Object },
-        methods: {
-            edit() {
-                document.getElementById('lead-modal-'+this.lead.id).className = 'modal is-active';
-            }
+        components: {
+            leadEdit: form
+        },
+        data() {
+            return {
+                edit: false
+            };
         }
     }
 </script>

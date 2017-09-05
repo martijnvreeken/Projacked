@@ -17,6 +17,12 @@
 </template>
 
 <script>
+    import leads from './Leads-latest';
+    import projects from './Projects-latest';
     export default {
+        components: {
+            latestLeads: leads,
+            latestProjects: projects
+        }
     }
 </script>

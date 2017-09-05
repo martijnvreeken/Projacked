@@ -12,14 +12,21 @@
             <tr is="q-text" v-for="text in records" :text="text"></tr>
             </tbody>
         </table>
-        <q-text_edit v-for="text in records" :text="text" :key="text.id"></q-text_edit>
+        <q-text-edit v-for="text in records" :text="text" :key="text.id"></q-text-edit>
     </div>
 </template>
 
 <script>
+    import text from './QuotationText';
+    import textEdit from './QuotationText-edit';
+
     export default {
         props: {
             api_url: String,
+        },
+        components: {
+            qText: text,
+            qTextEdit: textEdit
         },
         data() {
             return {

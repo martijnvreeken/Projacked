@@ -19,26 +19,32 @@
         <div class="card-content" style="min-height: 7.3em;">
             <div class="content">
                 <p>{{ project.description }}</p>
-                <p v-if="project.proposal">{{ project.proposal }}</p>
+                <p v-show="project.proposal">{{ project.proposal }}</p>
                 <hr>
                 <p v-if="project.fixed_price > 0">Vaste prijs: <strong>&euro;{{ project.fixed_price }}</strong></p>
-                <p v-if="project.hour_estimate > 0">{{ project.hour_estimate }} uur * &euro; {{ project.hour_rate }}/u = <strong>&euro; {{ project.hour_estimate * project.hour_rate }}</strong></p>
+                <p v-else>{{ project.hour_estimate }} uur * &euro; {{ project.hour_rate }}/u = <strong>&euro; {{ project.hour_estimate * project.hour_rate }}</strong></p>
             </div>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" @click="edit()">Edit</a>
+          <a class="card-footer-item" @click="edit = true">Edit</a>
         </footer>
     </div>
+    <project-edit :project="project" :key="project.id" :show="edit" @hide="edit = false"></project-edit>
 </div>
 </template>
 
 <script>
+    import form from './Project-edit';
+
     export default {
         props: { project: Object },
-        methods: {
-            edit() {
-                document.getElementById('project-modal-'+this.project.id).className = 'modal is-active';
-            }
+        components: {
+            projectEdit: form
+        },
+        data() {
+            return {
+                edit: false
+            };
         }
     }
 </script>

@@ -3,5 +3,10 @@
 </template>
 
 <script>
-    export default {}
+    import dashboard from '../components/Dashboard';
+    export default {
+      components: {
+          dashboard: dashboard
+      }
+    }
 </script>

@@ -3,5 +3,10 @@
 </template>
 
 <script>
-    export default {}
+    import quotations from '../components/QuotationTexts';
+    export default {
+        components: {
+            quotationTexts: quotations
+        }
+    }
 </script>

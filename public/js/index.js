@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 123);
+/******/ 	return __webpack_require__(__webpack_require__.s = 115);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -77,7 +77,7 @@
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = __webpack_require__(61);
+window.$ = window.jQuery = __webpack_require__(58);
 
 $('a[data-scroll]').on('click', function (event) {
   event.preventDefault();
@@ -90,20 +90,20 @@ $('span.nav-toggle').on('click', function (event) {
 
 /***/ }),
 
-/***/ 12:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 123:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+
+/***/ 12:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -114,7 +114,7 @@ module.exports = __webpack_require__(13);
 
 /***/ }),
 
-/***/ 61:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!

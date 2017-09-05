@@ -2,7 +2,6 @@
     <div class="container">
         <div class="columns is-multiline">
             <client v-for="client in records" :client="client" :key="client.id"></client>
-            <client-edit v-for="client in records" :client="client" :key="client.id"></client-edit>
         </div>
         <hr>
         <p v-if="data.from" class="has-text-centered">Toont {{ amount }} klanten van {{ data.total }} totaal</p>
@@ -11,6 +10,7 @@
 </template>
 
 <script>
+    import client from './Client';
     export default {
         props: {
             api_url: '',
@@ -20,6 +20,9 @@
                 data: {},
                 records: [],
             }
+        },
+        components: {
+          client: client
         },
         created() {
             axios.get(this.api_url).then((response) => {

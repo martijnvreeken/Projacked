@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         \Projacked\Models\User::create([
             'name' => 'Administrator',
-            'email' => 'admin@domain.com',
+            'email' => 'admin@kapibara.media',
             'password' => bcrypt('admin123')
         ]);
     }

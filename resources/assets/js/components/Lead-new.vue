@@ -46,6 +46,8 @@
 </template>
 
 <script>
+    import { eventBus } from '../app';
+
     export default {
         data() {
             return {
@@ -65,7 +67,8 @@
                 if(this.validates()) {
                     axios.post('/api/leads', this.$data).then(
                         function (response) {
-                            app._router.push('/aanvragen');
+                            eventBus.$emit('newLead', { lead: response.data });
+                            app.$router.push('/aanvragen');
                         }
                     ).catch(
                         function (error) {

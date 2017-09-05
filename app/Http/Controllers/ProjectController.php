@@ -1,4 +1,5 @@
-<?php namespace Projacked\Http\Controllers;
+<?php
+namespace Projacked\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

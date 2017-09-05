@@ -12,12 +12,11 @@
             </thead>
             <tbody>
                 <tr v-for="project in records">
-                    <td><a @click="edit(project.id)">{{ project.client.name }}</a></td>
+                    <td><a @click="edit(project)">{{ project.client.name }}</a></td>
                     <td v-if="project.fixed_price > 0"><strong>&euro;{{ project.fixed_price }}</strong></td>
                     <td v-if="project.hour_estimate > 0"><strong>&euro; {{ project.hour_estimate * project.hour_rate }}</strong></td>
                     <td v-if="project.fixed_price > 0"><i class="fa fa-lock"></i></td>
                     <td v-if="project.hour_estimate > 0"><i class="fa fa-unlock"></i></td>
-                    <project_edit :project="project"></project_edit>
                 </tr>
             </tbody>
             <tfoot>
@@ -28,25 +27,44 @@
                 </tr>
             </tfoot>
         </table>
+        <component :is="form"></component>
         <hr>
         <p v-if="amount" class="has-text-centered"><router-link to="/projecten">Bekijk alle</router-link></p>
     </div>
 </template>
 
 <script>
+    import Vue from 'vue';
+    import { eventBus } from '../app';
+    import form from './Project-edit';
+
     export default {
         props: {
             api_url: String,
         },
+        components: {
+            projectEdit: form
+        },
         data() {
             return {
                 records: [],
+                form: form
             }
         },
         created() {
-            axios.get(this.api_url).then((response) => {
-                this.records = response.data.data;
+            let $this = this;
+            eventBus.$on('projectDeleted', (event) => {
+                let index = $this.indexOf(event.project);
+                console.info('dash::project deleted: ' + index);
+                if(index > -1) {
+                    $this.records.splice(index, 1);
+                }
             });
+            eventBus.$on('leadPromoted', (event) => {
+                $this.refresh();
+            });
+
+            this.refresh();
         },
         computed: {
             amount() {
@@ -65,8 +83,24 @@
             }
         },
         methods: {
-            edit(id) {
-                document.getElementById('project-modal-'+id).className = 'modal is-active';
+            edit(project) {
+                console.info('Editing project: ' + project.id);
+                Vue.set(this.form, 'project', project);
+                Vue.set(this.form, 'show', true);
+                console.log(this.form);
+            },
+            refresh() {
+                axios.get(this.api_url).then((response) => {
+                    this.records = response.data.data;
+                });
+            },
+            indexOf(search) {
+                this.records.forEach((project) => {
+                    if(project.id === search.id) {
+                        return this.records.indexOf(project);
+                    }
+                    return -1;
+                });
             }
         }
     }

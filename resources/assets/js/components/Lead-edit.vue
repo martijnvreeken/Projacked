@@ -1,5 +1,5 @@
 <template>
-<div class="modal" :id="`lead-modal-${lead.id}`">
+<div class="modal is-active" :id="`lead-modal-${lead.id}`" v-if="show">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -60,16 +60,20 @@
 </template>
 
 <script>
+    import { eventBus } from '../app';
+
     export default {
         props: {
-            lead: Object
+            lead: Object,
+            show: false
         },
         methods: {
             submit() {
+                let $this = this;
                 if(this.validates()) {
                     axios.put('/api/leads/'+this.lead.id, this.lead).then(
                         function (response) {
-                            this.cancel();
+                            $this.cancel();
                         }
                     ).catch(
                         function (error) {
@@ -79,13 +83,11 @@
                 }
             },
             remove() {
+                let $this = this;
                 axios.delete('/api/leads/'+this.lead.id).then(
                     function (response) {
-                        var index = this.$parent.records.indexOf(this.lead);
-                        if(index > -1) {
-                            this.$parent.records.splice(index, 1);
-                        }
-                        this.cancel();
+                        eventBus.$emit('leadDeleted', { lead: $this.lead });
+                        $this.cancel();
                     }
                 ).catch(
                     function (error) {
@@ -94,14 +96,12 @@
                 );
             },
             promote() {
+                let $this = this;
                 axios.post('/api/leads/promote', this.lead).then(
                     function (response) {
                         // successfuly promoted the lead, it's no longer available
-                        var index = this.$parent.records.indexOf(this.lead);
-                        if(index > -1) {
-                            this.$parent.records.splice(index, 1);
-                        }
-                        app._router.push('/projecten');
+                        eventBus.$emit('leadDeleted', { lead: $this.lead });
+                        app.$router.push('/projecten');
                     }
                 ).catch(
                     function (error) {
@@ -125,7 +125,7 @@
                 return true;
             },
             cancel() {
-                document.getElementById('lead-modal-'+this.lead.id).className = 'modal';
+                this.$emit('hide');
             },
         }
     }

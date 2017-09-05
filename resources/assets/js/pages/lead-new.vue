@@ -1,10 +1,15 @@
 <template>
     <div class="container">
         <h1 class="title is-4">Nieuwe aanvraag</h1>
-        <lead_new></lead_new>
+        <new-lead></new-lead>
     </div>
 </template>
 
 <script>
-    export default {}
+    import form from '../components/Lead-new';
+    export default {
+        components: {
+            newLead: form
+        }
+    }
 </script>

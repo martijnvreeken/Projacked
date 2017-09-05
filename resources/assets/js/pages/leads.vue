@@ -3,5 +3,10 @@
 </template>
 
 <script>
-    export default {}
+    import leads from '../components/Leads';
+    export default {
+        components: {
+            leads: leads
+        }
+    }
 </script>

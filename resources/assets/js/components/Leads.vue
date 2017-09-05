@@ -3,7 +3,6 @@
         <p v-if="! amount" class="has-text-centered">Geen aanvragen gevonden</p>
         <div class="columns is-multiline">
             <lead v-for="lead in records" :lead="lead" :key="lead.id"></lead>
-            <lead_edit v-for="lead in records" :lead="lead" :key="lead.id"></lead_edit>
         </div>
         <hr>
         <p v-if="amount" class="has-text-centered">Toont {{ amount }} aanvragen van {{ data.total }} totaal</p>
@@ -13,21 +12,41 @@
 </template>
 
 <script>
+    import { eventBus } from '../app';
+    import lead from './Lead';
+
     export default {
         props: {
             api_url: String,
+        },
+        components: {
+            lead: lead
         },
         data() {
             return {
                 data: {},
                 records: [],
+                edit: false
             }
         },
         created() {
+            let $this = this;
+            eventBus.$on('leadPromoted', (event) => {
+                console.info('on::Lead got promoted: ' + event.lead );
+                var index = $this.records.indexOf(event.lead);
+                if(index > -1) {
+                    $this.records.splice(index, 1);
+                }
+            });
+
+            eventBus.$on('newLead', (event) => {
+                $this.records = $this.records.concat(event.lead);
+            });
+
             axios.get(this.api_url).then((response) => {
-                this.data = response.data;
+                $this.data = response.data;
                 if(response.data.data.length > 0) {
-                    this.records = this.records.concat(response.data.data);
+                    $this.records = $this.records.concat(response.data.data);
                 }
             });
         },

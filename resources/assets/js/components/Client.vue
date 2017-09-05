@@ -27,19 +27,25 @@
             </div>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" @click="edit()">Edit</a>
+          <a class="card-footer-item" @click="edit = true">Edit</a>
         </footer>
     </div>
+    <client-edit :client="client" :key="client.id" :show="edit" @hide="edit = false"></client-edit>
 </div>
 </template>
 
 <script>
+    import form from './Client-edit';
+
     export default {
         props: { client: Object },
-        methods: {
-            edit() {
-                document.getElementById('client-modal-'+this.client.id).className = 'modal is-active';
-            }
+        data() {
+          return {
+            edit: false
+          };
+        },
+        components: {
+          clientEdit: form
         }
     }
 </script>

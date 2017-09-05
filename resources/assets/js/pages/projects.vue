@@ -3,5 +3,10 @@
 </template>
 
 <script>
-    export default {}
+    import projects from '../components/Projects';
+    export default {
+        components: {
+            projects: projects
+        }
+    }
 </script>
