@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h1 class="title is-1 has-text-centered">Projecten</h1>
         <div class="columns is-multiline">
             <project v-for="project in records" :project="project" :key="project.id"></project>
         </div>
@@ -34,10 +35,10 @@
                     $this.records.splice(index, 1);
                 }
             });
-            axios.get(this.api_url).then((response) => {
-                this.data = response.data;
-                this.records = this.records.concat(response.data.data);
+            eventBus.$on('leadPromoted', (event) => {
+                $this.loadData();
             });
+            this.loadData();
         },
         computed: {
             amount() {
@@ -45,6 +46,12 @@
             },
         },
         methods: {
+            loadData() {
+              axios.get(this.api_url).then((response) => {
+                  this.data = response.data;
+                  this.records = this.records.concat(response.data.data);
+              });
+            },
             loadMore() {
                 axios.get(this.data.next_page_url).then((response) => {
                     this.data = response.data;

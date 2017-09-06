@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h1 class="title is-1 has-text-centered">Klanten</h1>
         <div class="columns is-multiline">
             <client v-for="client in records" :client="client" :key="client.id"></client>
         </div>

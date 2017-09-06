@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h1 class="title is-1 has-text-centered">Aanvragen</h1>
         <p v-if="! amount" class="has-text-centered">Geen aanvragen gevonden</p>
         <div class="columns is-multiline">
             <lead v-for="lead in records" :lead="lead" :key="lead.id"></lead>

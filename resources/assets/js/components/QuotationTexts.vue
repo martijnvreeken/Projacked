@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h1 class="title is-1 has-text-centered">Offerte teksten</h1>
         <table class="table">
             <thead>
                 <tr>

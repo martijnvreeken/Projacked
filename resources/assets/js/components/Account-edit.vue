@@ -1,5 +1,5 @@
 <template>
-<div class="modal" id="account-modal">
+<div class="modal" :class="{ 'is-active': active}" id="account-modal">
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
@@ -21,20 +21,24 @@
 <script>
     export default {
         data() {
-            return { account: {
-                name: '',
-                email: ''
-            } }
+            return {
+                account: {
+                    name: '',
+                    email: ''
+                },
+                active: false
+            }
         },
         methods: {
             setData(account) {
                 this.account = account;
             },
             submit() {
+                let $this = this;
                 if(this.validates()) {
                     axios.put('/api/account', this.account).then(
                         function (response) {
-                            this.cancel();
+                            $this.cancel();
                         }
                     ).catch(
                         function (error) {
@@ -49,10 +53,10 @@
                 return (this.account.name !== '') && (this.account.email !== '');
             },
             cancel() {
-                document.getElementById('account-modal').className = 'modal';
+                this.active = false;
             },
             activate() {
-                document.getElementById('account-modal').className = 'modal is-active';
+                this.active = true;
             },
         }
     }

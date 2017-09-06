@@ -62,7 +62,7 @@
             <h2 class="subtitle">
                 Kapibara is Kanban.
             </h2>
-            <p>We vertellen u graag de voor- en nadelen bij een goede bak koffie.
+            <p>Kanban is een agile werkmethode die zorgt voor overzicht en effici&euml;nte communicatie.
             </p>
             <br>
             <p><a href="werkwijze" class="button is-dark is-medium">Lees meer</a>
@@ -72,13 +72,15 @@
 </section>
 <section class="section">
     <div class="container">
-        <div class="heading">
+        <div class="heading has-text-centered">
             <h1 class="title">Caching</h1>
         </div>
-        <div class="content">
+        <div class="columns">
+          <div class="content column is-half">
             <p>Bij grotere websites en webapplicaties met een hoog aantal bezoekers is caching onvermijdelijk. De standaard oplossingen zijn dan niet altijd toereikend. Kapibara heeft ervaring met reversed proxy oplossingen zoals Varnish.</p>
+          </div>
+          @include('partial.offerte', ['subject'=>'Caching'])
         </div>
-        @include('partial.offerte', ['subject'=>'Caching'])
     </div>
 </section>
 <section class="hero is-light">
@@ -121,13 +123,15 @@
 </section>
 <section class="section">
     <div class="container">
-        <div class="heading">
+        <div class="heading has-text-centered">
             <h1 class="title">Maatwerk zoekmachine met Elasticsearch</h1>
         </div>
-        <div class="content">
-            <p>Bij websites en webapplicaties met grote hoeveelheden data of pagina's zijn standaard oplossingen voor zoeken niet altijd toereikend. Kapibara heeft ervaring met het inzetten van Google Site Search of Elasticsearch.</p>
+        <div class="columns">
+          <div class="content column is-half">
+            <p>Bij websites en webapplicaties met grote hoeveelheden data of pagina's zijn standaard oplossingen voor zoeken niet altijd toereikend. Kapibara heeft ervaring met het inzetten van Google Site Search of Elasticsearch. <br><a href="https://en.wikipedia.org/wiki/Faceted_search">Faceted search</a> is hiermee ook te realiseren (denk aan Bol.com e.d.).</p>
+          </div>
+          @include('partial.offerte', ['subject'=>'Elasticsearch'])
         </div>
-        @include('partial.offerte', ['subject'=>'Elasticsearch'])
     </div>
 </section>
 @endsection

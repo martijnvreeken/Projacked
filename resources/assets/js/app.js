@@ -36,6 +36,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+Vue.component('main-menu', require('./components/menu.vue'));
 Vue.component('k-text', require('./components/k-text.vue'));
 
 import { routes } from './routes';
@@ -93,8 +94,8 @@ window.app = new Vue({
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         },
         setAccount(user) {
-            let account = Vue.extend(require('./components/Account-edit.vue'));
-            this.account = new account();
+            let Account = Vue.extend(require('./components/Account-edit.vue'));
+            this.account = new Account();
             this.account.setData(user);
             this.account.$mount('#mount-point');
         },

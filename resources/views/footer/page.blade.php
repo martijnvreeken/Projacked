@@ -24,10 +24,10 @@
                             <a href="mailto:info@kapibara.media">info@kapibara.media</a>
                             <br>
                             <a href="tel:0031625431044">06 2543 1044</a>
-                            <br> Henri Dunantlaan 21, 3434CJ Nieuwegein
+                            <br> {{--Henri Dunantlaan 21, 3434CJ --}}Nieuwegein
                         </p>
-                        <p>KvK te Utrecht: 67362656<br>
-                        Belastingnummer: NL186456621B02</p>
+                        <p>KvK te Utrecht: 67362656{{--<br>
+                        Belastingnummer: NL186456621B02--}}</p>
                     </div>
                 </div>
             </div>

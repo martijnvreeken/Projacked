@@ -6,15 +6,17 @@
             <div class="notification is-warning" id="invalid_credentials">Gegegeven combinatie van email en paswoord zijn niet bekend</div>
             <div class="notification is-danger" id="could_not_create_token">Er is een probleem met de applicatie</div>
             <form>
+              <div class="field">
                 <label class="label">Email</label>
-                <p class="control">
                     <input class="input" type="email" placeholder="Uw emailadres" v-model="email" required>
-                </p>
-                <label class="label">Paswoord</label>
-                <p class="control">
-                    <input class="input" type="password" placeholder="Uw paswoord" v-model="password" required>
-                </p>
+              </div>
+              <div class="field">
+                  <label class="label">Paswoord</label>
+                  <input class="input" type="password" placeholder="Uw paswoord" v-model="password" required @keyup.enter="login">
+              </div>
+              <div class="field">
                 <button type="button" class="button is-primary" @click="login">Login</button>
+              </div>
             </form>
         </div>
     </div>
@@ -42,9 +44,10 @@
                         }
                     ).catch(
                         function (error) {
-                            var classes = document.getElementById(error.data.error).className;
+                            let errorId = error.response.data.error;
+                            var classes = document.getElementById(errorId).className;
                             classes += ' is-active';
-                            document.getElementById(error.data.error).className = classes;
+                            document.getElementById(errorId).className = classes;
                         }
                     );
                 }

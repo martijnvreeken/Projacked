@@ -4,9 +4,8 @@
     <article class="section">
         <div class="container">
             <div class="content">
-                <p>We hebben uw aanvraag ontvangen. U ontvangt zsm onze reactie.</p>
+                <p>Bedankt! We hebben uw aanvraag ontvangen. We nemen zo spoedig mogelijk contact met u op.</p>
             </div>
         </div>
     </article>
 @endsection
-

@@ -56,9 +56,10 @@
             });
             eventBus.$on('leadDeleted', (event) => {
                 let index = $this.records.indexOf(event.lead);
-                console.log('lead deleted in latest: ' + index);
                 if(index > -1) {
                     $this.records.splice(index, 1);
+                } else {
+                  console.error('Lead with index ' + index + ' not found!');
                 }
             });
 
