@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/crm', function () {
+Route::get('/crm/{anything?}', function () {
     return view('projacked');
 });
 

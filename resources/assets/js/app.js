@@ -42,7 +42,9 @@ Vue.component('k-text', require('./components/k-text.vue'));
 import { routes } from './routes';
 
 const router = new VueRouter({
-  routes // short for `routes: routes`
+  base: '/crm',
+  routes, // short for `routes: routes`
+  mode: 'history'
 });
 
 router.beforeEach((to, from, next) => {
