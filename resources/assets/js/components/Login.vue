@@ -40,7 +40,9 @@
                             app.setToken(response.data.token);
                             app.setAccount(response.data.user);
                             // redirect to dashboard
-                            app._router.push('/dashboard');
+                            app.$router.push({
+                              path: '/dashboard'
+                            });
                         }
                     ).catch(
                         function (error) {
