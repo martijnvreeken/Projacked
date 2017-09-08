@@ -1,17 +1,13 @@
 export default {
   data() {
     return {
-      token: "",
-      account: {
-        name: "",
-        email: ""
-      }
+      token: ""
     };
   },
   computed: {
     authenticated: () => {
       return this.token !== "";
-    },
+    }
   },
   methods: {
     setToken(token) {
@@ -19,8 +15,11 @@ export default {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     },
     setAccount(user){
-      this.account = user;
-    }    
+      this.$store.commit('setAccount', user);
+    },
+    getAccount() {
+      return this.$store.state.account;
+    }
   }
 
 }

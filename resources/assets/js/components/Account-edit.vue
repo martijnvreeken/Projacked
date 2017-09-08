@@ -20,15 +20,13 @@
     export default {
         data() {
             return {
-                account: {
-                    name: '',
-                    email: ''
-                },
                 hasErrors: false
             }
         },
-        created() {
-          this.account = app.account;
+        computed: {
+          account: () => {
+            return app.getAccount();
+          }
         },
         methods: {
             submit() {
@@ -36,9 +34,9 @@
                 if(this.validates()) {
                     axios.put('/api/account', this.account).then(
                         function (response) {
-                            app.setAccount( $this.account );
+                            app.setAccount($this.account);
                             $this.hasErrors = false;
-                            // show a message
+                            // TODO: show a success message
                         }
                     ).catch(
                         function (error) {

@@ -55,7 +55,7 @@ if (token) {
  * ROUTING
  */
 
-Vue.use(VueRouter);
+ Vue.use(VueRouter);
 
 import { routes } from './routes';
 const router = new VueRouter({
@@ -65,7 +65,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if(app.token) {
+    if(app.authenticated) {
         next();
         return;
     }
@@ -87,12 +87,9 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     leads: [],
-    products: [],
+    projects: [],
     clients: [],
-    account: {
-      name: "",
-      email: ""
-    }
+    account: {}
   },
   getters: {
     leadsWorth: (state) => {
@@ -113,6 +110,11 @@ const store = new Vuex.Store({
         }
       }, 0);
     }
+  },
+  mutations: {
+    setAccount: (state, account) => {
+      state.account = account;
+    }
   }
 });
 
@@ -120,7 +122,6 @@ const store = new Vuex.Store({
  * Instantiate Vue
  */
 
-import auth from './mixins/Authentication';
 export const eventBus = new Vue();
 import auth from './mixins/Authentication';
 
