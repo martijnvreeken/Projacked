@@ -36,6 +36,7 @@
 <script>
     import { eventBus } from '../app';
     import form from './Lead-edit';
+    import { mapGetters } from 'vuex';
 
     export default {
         props: {
@@ -68,19 +69,11 @@
             });
         },
         computed: {
+            ...mapGetters({
+              projectsWorth: 'total_worth'
+            }),
             amount() {
                 return this.records.length;
-            },
-            total_worth() {
-                let total = 0;
-                this.records.forEach(function (lead) {
-                    if(lead.hour_estimate) {
-                        total += (lead.hour_estimate * lead.hour_rate);
-                    } else {
-                        total += lead.fixed_price;
-                    }
-                });
-                return total;
             }
         },
         methods: {

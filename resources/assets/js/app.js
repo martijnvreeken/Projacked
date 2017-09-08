@@ -6,11 +6,7 @@
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
-// import VueResource from 'vue-resource';
-
-// Vue.use(VueResource);
-Vue.use(VueRouter);
+import Vuex from 'vuex';
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -19,8 +15,27 @@ Vue.use(VueRouter);
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+  if (response.headers.authorization) {
+    let token = response.headers.authorization.split(' ');
+    app.setToken(token[1]);
+  }
+  return response;
+}, function (error) {
+  // Do something with response error
+  return Promise.reject(error);
+});
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -36,11 +51,13 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-Vue.component('main-menu', require('./components/menu.vue'));
-Vue.component('k-text', require('./components/k-text.vue'));
+/**
+ * ROUTING
+ */
+
+Vue.use(VueRouter);
 
 import { routes } from './routes';
-
 const router = new VueRouter({
   base: '/crm',
   routes, // short for `routes: routes`
@@ -54,55 +71,63 @@ router.beforeEach((to, from, next) => {
     }
     // going anywhere but the login page without a token set
     if(to.path !== '/') {
-        next('/');
+        next({
+          path: '/'
+        });
         return;
     }
     next();
 })
 
-// Add a request interceptor
-axios.interceptors.request.use(function (config) {
-    return config;
-  }, function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  });
+/**
+ * VueX Init
+ */
 
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-    if (response.headers.authorization) {
-      let token = response.headers.authorization.split(' ');
-      window.app.setToken(token[1]);
+Vue.use(Vuex);
+const store = new Vuex.Store({
+  state: {
+    leads: [],
+    products: [],
+    clients: [],
+    account: {
+      name: "",
+      email: ""
     }
-    return response;
-  }, function (error) {
-    // Do something with response error
-    return Promise.reject(error);
-  });
+  },
+  getters: {
+    leadsWorth: (state) => {
+      return state.leads.reduce( (sum, lead) => {
+        if(lead.hour_estimate) {
+            return sum + (lead.hour_estimate * lead.hour_rate);
+        } else {
+            return sum + lead.fixed_price;
+        }
+      }, 0);
+    },
+    projectsWorth: (state) => {
+      return state.projects.reduce( (sum, project) => {
+        if(project.hour_estimate) {
+            return sum + (project.hour_estimate * project.hour_rate);
+        } else {
+            return sum + project.fixed_price;
+        }
+      }, 0);
+    }
+  }
+});
 
+/**
+ * Instantiate Vue
+ */
+
+import auth from './mixins/Authentication';
 export const eventBus = new Vue();
 
+Vue.component('main-menu', require('./components/menu.vue'));
+Vue.component('k-text', require('./components/k-text.vue'));
+
 window.app = new Vue({
-    router,
-    data() {
-        return {
-            token: '',
-            account: null
-        };
-    },
-    methods: {
-        setToken(token) {
-            this.token = token;
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-        },
-        setAccount(user) {
-            let Account = Vue.extend(require('./components/Account-edit.vue'));
-            this.account = new Account();
-            this.account.setData(user);
-            this.account.$mount('#mount-point');
-        },
-        editAccount() {
-            this.account.activate();
-        }
-    }
+  store,
+  router,
+  mixins: [ auth ]
 }).$mount('#app');
