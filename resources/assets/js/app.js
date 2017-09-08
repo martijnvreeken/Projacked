@@ -81,28 +81,9 @@ axios.interceptors.response.use(function (response) {
   });
 
 export const eventBus = new Vue();
+import auth from './mixins/Authentication';
 
 window.app = new Vue({
     router,
-    data() {
-        return {
-            token: '',
-            account: null
-        };
-    },
-    methods: {
-        setToken(token) {
-            this.token = token;
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-        },
-        setAccount(user) {
-            let Account = Vue.extend(require('./components/Account-edit.vue'));
-            this.account = new Account();
-            this.account.setData(user);
-            this.account.$mount('#mount-point');
-        },
-        editAccount() {
-            this.account.activate();
-        }
-    }
+    mixins: [ auth ]
 }).$mount('#app');

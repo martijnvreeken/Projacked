@@ -1,19 +1,17 @@
 <template>
-<div class="modal" :class="{ 'is-active': active}" id="account-modal">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Jouw account</p>
-            <button class="delete" @click="cancel()"></button>
-        </header>
-        <section class="modal-card-body">
-            <div class="notification is-warning" id="invalid">Naam en email mogen niet leeg zijn</div>
+<div class="columns is-mobile">
+    <div class="column is-hidden-touch is-one-quarter-desktop">&nbsp;</div>
+    <div class="column is-half-desktop">
+        <div class="box">
+            <div class="notification is-warning is-active" v-show="hasErrors">Naam en email mogen niet leeg zijn</div>
+            <form @submit.prevent>
             <k-text v-model="account.name" title="Je naam"></k-text>
             <k-text v-model="account.email" title="Je emailadres"></k-text>
-        </section>
-        <footer class="modal-card-foot">
-            <a class="button is-primary" @click="submit()">Opslaan</a>
-        </footer>
+            <div class="field">
+                <button type="button" class="button is-primary" @click="submit">Opslaan</button>
+            </div>
+          </form>
+        </div>
     </div>
 </div>
 </template>
@@ -26,47 +24,34 @@
                     name: '',
                     email: ''
                 },
-                active: false
+                hasErrors: false
             }
         },
+        created() {
+          this.account = app.account;
+        },
         methods: {
-            setData(account) {
-                this.account = account;
-            },
             submit() {
                 let $this = this;
                 if(this.validates()) {
                     axios.put('/api/account', this.account).then(
                         function (response) {
-                            $this.cancel();
+                            app.setAccount( $this.account );
+                            $this.hasErrors = false;
+                            // show a message
                         }
                     ).catch(
                         function (error) {
-                            console.log(error);
+                            console.error(error);
                         }
                     );
                 } else {
-                    document.getElementById('invalid').className += ' is-active';
+                    this.hasErrors = true;
                 }
             },
             validates() {
                 return (this.account.name !== '') && (this.account.email !== '');
-            },
-            cancel() {
-                this.active = false;
-            },
-            activate() {
-                this.active = true;
-            },
+            }
         }
     }
 </script>
-
-<style>
-    .notification {
-        display: none;
-    }
-    .notification.is-active {
-        display: block;
-    }
-</style>

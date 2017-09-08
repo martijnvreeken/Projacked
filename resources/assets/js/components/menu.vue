@@ -15,9 +15,7 @@
           <router-link to="/projecten" class="nav-item" active-class="is-active">Projecten</router-link>
           <router-link to="/klanten" class="nav-item" active-class="is-active">Klanten</router-link>
           <router-link to="/offerte-teksten" class="nav-item" active-class="is-active">Offerte teksten</router-link>
-          <a class="nav-item" @click="editAccount()" v-if="token">
-            Account
-          </a>
+          <router-link to="/account" class="nav-item" active-class="is-active">Account</router-link>
           <a href="/" class="nav-item">Website</a>
       </div>
   </nav>
