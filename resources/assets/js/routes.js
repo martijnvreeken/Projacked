@@ -6,5 +6,6 @@ export const routes = [
   { name: 'leads', path: '/aanvragen', component: require('./pages/leads.vue') },
   { name: 'texts', path: '/offerte-teksten', component: require('./pages/texts.vue') },
   { name: 'new_lead', path: '/aanvragen/nieuw', component: require('./pages/lead-new.vue') },
+  { name: 'account', path: '/account', component: require('./components/Account-edit') },
   { name: '404', path: '*', component: { template: '<h1>Pagina niet gevonden.</h1>' } }
 ];
