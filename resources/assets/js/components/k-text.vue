@@ -2,7 +2,7 @@
     <div class="field">
         <label class="label">{{ title }}</label>
         <p class="control">
-            <input class="input" type="text" :value="value" @input="update($event.target.value)">
+            <input class="input" type="text" :value="value" @change.lazy="update($event.target.value)">
         </p>
     </div>
 </template>
