@@ -68,9 +68,7 @@
             this.refresh();
         },
         computed: {
-            ...mapGetters({
-              leadsWorth: 'total_worth'
-            }),
+            ...mapGetters({total_worth: 'projectsWorth'}),
             amount() {
                 return this.records.length;
             }

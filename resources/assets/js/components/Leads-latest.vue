@@ -47,7 +47,7 @@
         },
         data() {
             return {
-                records: [],
+                records: []
             }
         },
         created() {
@@ -69,9 +69,7 @@
             });
         },
         computed: {
-            ...mapGetters({
-              projectsWorth: 'total_worth'
-            }),
+            ...mapGetters({total_worth: 'leadsWorth'}),
             amount() {
                 return this.records.length;
             }
