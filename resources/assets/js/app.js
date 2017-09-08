@@ -122,6 +122,7 @@ const store = new Vuex.Store({
 
 import auth from './mixins/Authentication';
 export const eventBus = new Vue();
+import auth from './mixins/Authentication';
 
 Vue.component('main-menu', require('./components/menu.vue'));
 Vue.component('k-text', require('./components/k-text.vue'));
