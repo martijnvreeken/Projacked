@@ -86,7 +86,7 @@
                 let $this = this;
                 axios.delete('/api/leads/'+this.lead.id).then(
                     function (response) {
-                        eventBus.$emit('leadDeleted', { lead: $this.lead });
+                        $this.$store.commit('removeLead', $this.lead);
                         $this.cancel();
                     }
                 ).catch(
@@ -100,7 +100,7 @@
                 axios.post('/api/leads/promote', this.lead).then(
                     function (response) {
                         // successfuly promoted the lead, it's no longer available
-                        eventBus.$emit('leadDeleted', { lead: $this.lead });
+                        $this.$store.commit('removeLead', $this.lead);
                         app.$router.push('/projecten');
                     }
                 ).catch(

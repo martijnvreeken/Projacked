@@ -45,31 +45,14 @@
         components: {
             leadEdit: form
         },
-        data() {
-            return {
-                records: []
-            }
-        },
         created() {
             let $this = this;
-            eventBus.$on('newLead', (event) => {
-                $this.records = $this.records.concat(event.lead);
-            });
-            eventBus.$on('leadDeleted', (event) => {
-                let index = $this.records.indexOf(event.lead);
-                if(index > -1) {
-                    $this.records.splice(index, 1);
-                } else {
-                  console.error('Lead with index ' + index + ' not found!');
-                }
-            });
-
             axios.get(this.api_url).then((response) => {
-                this.records = response.data.data;
+                this.$store.commit('addLeads', response.data.data);
             });
         },
         computed: {
-            ...mapGetters({total_worth: 'leadsWorth'}),
+            ...mapGetters({total_worth: 'leadsWorth', records: 'leads'}),
             amount() {
                 return this.records.length;
             }

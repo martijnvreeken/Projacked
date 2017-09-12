@@ -96,9 +96,10 @@ const store = new Vuex.Store({
       return state.leads.reduce( (sum, lead) => {
         if(lead.hour_estimate) {
             return sum + (lead.hour_estimate * lead.hour_rate);
-        } else {
+        } else if(lead.fixed_price) {
             return sum + lead.fixed_price;
         }
+        return sum;
       }, 0);
     },
     projectsWorth: (state) => {
@@ -109,11 +110,28 @@ const store = new Vuex.Store({
             return sum + project.fixed_price;
         }
       }, 0);
+    },
+    leads: (state) => {
+      return state.leads;
     }
   },
   mutations: {
     setAccount: (state, account) => {
       state.account = account;
+    },
+    addLeads: (state, items) => {
+      state.leads = state.leads.concat(items);
+    },
+    removeLead: (state, item) => {
+      let i = state.leads.indexOf(item);
+      if(i == -1) {
+        console.error('lead not found!');
+        return;
+      }
+      state.leads.splice(i,0);
+    },
+    addProjects: (state, items) => {
+      state.projects = state.projects.concat(items);
     }
   }
 });

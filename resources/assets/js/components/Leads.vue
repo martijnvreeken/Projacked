@@ -15,6 +15,7 @@
 <script>
     import { eventBus } from '../app';
     import lead from './Lead';
+    import { mapGetters } from 'vuex';
 
     export default {
         props: {
@@ -26,32 +27,19 @@
         data() {
             return {
                 data: {},
-                records: [],
                 edit: false
             }
         },
         created() {
-            let $this = this;
-            eventBus.$on('leadPromoted', (event) => {
-                console.info('on::Lead got promoted: ' + event.lead );
-                var index = $this.records.indexOf(event.lead);
-                if(index > -1) {
-                    $this.records.splice(index, 1);
-                }
-            });
-
-            eventBus.$on('newLead', (event) => {
-                $this.records = $this.records.concat(event.lead);
-            });
-
             axios.get(this.api_url).then((response) => {
-                $this.data = response.data;
+                this.data = response.data;
                 if(response.data.data.length > 0) {
-                    $this.records = $this.records.concat(response.data.data);
+                    this.$store.commit('addLeads', response.data.data);
                 }
             });
         },
         computed: {
+            ...mapGetters({records: 'leads'}),
             amount() {
                 return this.records.length;
             },
@@ -61,7 +49,7 @@
                 axios.get(this.data.next_page_url).then((response) => {
                     this.data = response.data;
                     if(response.data.data.length > 0) {
-                        this.records = this.records.concat(response.data.data);
+                        $this.$store.commit('addLeads', response.data.data);
                     }
                 });
             },

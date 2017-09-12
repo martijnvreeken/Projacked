@@ -65,9 +65,10 @@
         methods: {
             submit() {
                 if(this.validates()) {
+                    let $this = this;
                     axios.post('/api/leads', this.$data).then(
                         function (response) {
-                            eventBus.$emit('newLead', { lead: response.data });
+                            $this.$store.commit('addLeads', response.data);
                             app.$router.push('/aanvragen');
                         }
                     ).catch(
