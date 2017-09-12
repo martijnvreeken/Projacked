@@ -2,6 +2,7 @@
 
 namespace Projacked\Http\Controllers;
 
+use Projacked\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use function view;
@@ -9,9 +10,13 @@ use function view;
 class PageController extends Controller
 {
     public function get($slug) {
-        if (!View::exists('pages.' . $slug)) {
-            abort(404);
+        $page = Page::where('slug', $slug)->first();
+        if ($page) {
+            return view('page', compact('page'));
         }
-        return view('pages.' . $slug);
+        if (View::exists('pages.' . $slug)) {
+            return view('pages.' . $slug);
+        }
+        abort(404);
     }
 }
