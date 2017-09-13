@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/crm/{anything?}', function () {
     return view('projacked');
 });
@@ -21,3 +23,7 @@ Route::get('/', function () {
 
 Route::get('/{slug}', 'PageController@get');
 Route::post('/offerte', 'LeadController@create');
+
+Route::group(['prefix' => 'cms', 'middleware' => ['auth'], 'as' => 'cms.'], function () {
+    Route::resource('pages', 'CMS\PageController', ['except' => ['show', 'destroy']]);
+});

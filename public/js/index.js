@@ -63,12 +63,22 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 127);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
+/******/ ({
+
+/***/ 127:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(15);
+__webpack_require__(16);
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -77,7 +87,7 @@
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = __webpack_require__(4);
+window.$ = window.jQuery = __webpack_require__(67);
 
 $('a[data-scroll]').on('click', function (event) {
   event.preventDefault();
@@ -89,19 +99,22 @@ $('span.nav-toggle').on('click', function (event) {
 });
 
 /***/ }),
-/* 2 */
+
+/***/ 16:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 3 */
+
+/***/ 17:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 4 */
+
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10360,15 +10373,6 @@ return jQuery;
 } );
 
 
-/***/ }),
-/* 5 */,
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(1);
-__webpack_require__(2);
-module.exports = __webpack_require__(3);
-
-
 /***/ })
-/******/ ]);
+
+/******/ });
