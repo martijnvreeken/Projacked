@@ -25,5 +25,5 @@ Route::get('/{slug}', 'PageController@get');
 Route::post('/offerte', 'LeadController@create');
 
 Route::group(['prefix' => 'cms', 'middleware' => ['auth'], 'as' => 'cms.'], function () {
-    Route::resource('pages', 'CMS\PageController');
+    Route::resource('pages', 'CMS\PageController', ['except' => ['show', 'destroy']]);
 });

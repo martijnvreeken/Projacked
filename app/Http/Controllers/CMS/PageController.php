@@ -37,20 +37,9 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only(['title', 'slug', 'body']);
+        $data = $request->only(['title', 'slug', 'label', 'body']);
         Page::create($data);
         return redirect(route('cms.pages.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Projacked\Page  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Page $page)
-    {
-        //
     }
 
     /**
@@ -61,7 +50,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        //
+        return view('cms.page.edit', compact('page'));
     }
 
     /**
@@ -73,17 +62,7 @@ class PageController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Projacked\Page  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Page $page)
-    {
-        //
+        $page->update($request->only(['slug', 'title', 'label', 'body']));
+        return redirect(route('cms.pages.index'));
     }
 }
