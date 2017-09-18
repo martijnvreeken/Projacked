@@ -13431,7 +13431,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(2);
 //
 //
 //
@@ -13487,46 +13486,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        lead: Object,
-        show: false
+    data() {
+        return {
+            lead: {}
+        };
+    },
+    mounted() {
+        // get the lead based on leadId from the uri
     },
     methods: {
         submit() {
             let $this = this;
             if (this.validates()) {
                 axios.put('/api/leads/' + this.lead.id, this.lead).then(function (response) {
-                    $this.cancel();
+                    $this.redirect();
                 }).catch(function (error) {
                     console.log(error);
                 });
             }
-        },
-        remove() {
-            let $this = this;
-            axios.delete('/api/leads/' + this.lead.id).then(function (response) {
-                $this.$store.commit('removeLead', $this.lead);
-                $this.cancel();
-            }).catch(function (error) {
-                console.log(error);
-            });
         },
         promote() {
             let $this = this;
             axios.post('/api/leads/promote', this.lead).then(function (response) {
                 // successfuly promoted the lead, it's no longer available
                 $this.$store.commit('removeLead', $this.lead);
-                app.$router.push('/projecten');
+                app.$router.push({ name: 'projects' });
             }).catch(function (error) {
                 console.log(error);
             });
@@ -13534,7 +13520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         quote() {
             axios.post('/api/quotations', this.lead).then(function (response) {
                 // successfuly created the quotation
-                this.cancel();
+                this.redirect();
             }).catch(function (error) {
                 console.log(error);
             });
@@ -13542,8 +13528,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         validates() {
             return true;
         },
-        cancel() {
-            this.$emit('hide');
+        redirect() {
+            app.$router.push({
+                name: 'leads'
+            });
         }
     }
 });
@@ -13679,7 +13667,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -13741,7 +13728,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -13767,7 +13753,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }),
     methods: {
         edit(lead) {
-            // show modal somehow
+            app.$router.push({
+                name: 'lead-edit',
+                params: {
+                    leadId: lead.id
+                }
+            });
         }
     }
 });
@@ -14524,26 +14515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 59 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Leads__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Leads___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Leads__);
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        leads: __WEBPACK_IMPORTED_MODULE_0__components_Leads___default.a
-    }
-});
-
-/***/ }),
+/* 59 */,
 /* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -14641,7 +14613,7 @@ var _this = this;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-const routes = [{ name: 'login', path: '/', component: __webpack_require__(91) }, { name: 'home', path: '/dashboard', component: __webpack_require__(88), alias: '/home' }, { name: 'clients', path: '/klanten', component: __webpack_require__(87) }, { name: 'projects', path: '/projecten', component: __webpack_require__(92) }, { name: 'leads', path: '/aanvragen', component: __webpack_require__(90) }, { name: 'texts', path: '/offerte-teksten', component: __webpack_require__(93) }, { name: 'new_lead', path: '/aanvragen/nieuw', component: __webpack_require__(89) }, { name: 'account', path: '/account', component: __webpack_require__(69) }, { name: '404', path: '*', component: { template: '<h1>Pagina niet gevonden.</h1>' } }];
+const routes = [{ name: 'login', path: '/', component: __webpack_require__(91) }, { name: 'home', path: '/dashboard', component: __webpack_require__(88), alias: '/home' }, { name: 'clients', path: '/klanten', component: __webpack_require__(87) }, { name: 'projects', path: '/projecten', component: __webpack_require__(92) }, { name: 'leads', path: '/aanvragen', component: __webpack_require__(77) }, { name: 'lead-edit', path: '/aanvragen/edit/:leadId', component: __webpack_require__(11) }, { name: 'new_lead', path: '/aanvragen/nieuw', component: __webpack_require__(89) }, { name: 'texts', path: '/offerte-teksten', component: __webpack_require__(93) }, { name: 'account', path: '/account', component: __webpack_require__(69) }, { name: '404', path: '*', component: { template: '<h1>Pagina niet gevonden.</h1>' } }];
 /* harmony export (immutable) */ __webpack_exports__["a"] = routes;
 
 
@@ -15573,40 +15545,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(59),
-  /* template */
-  __webpack_require__(116),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/projects/Projacked/resources/assets/js/pages/leads.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] leads.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a0549b74", Component.options)
-  } else {
-    hotAPI.reload("data-v-a0549b74", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 90 */,
 /* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16136,29 +16075,13 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.show) ? _c('div', {
-    staticClass: "modal is-active",
-    attrs: {
-      "id": ("lead-modal-" + (_vm.lead.id))
-    }
+  return _c('div', {
+    staticClass: "section"
   }, [_c('div', {
-    staticClass: "modal-background"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "modal-card"
-  }, [_c('header', {
-    staticClass: "modal-card-head"
-  }, [_c('p', {
-    staticClass: "modal-card-title"
-  }, [_vm._v("Bewerk aanvraag")]), _vm._v(" "), _c('button', {
-    staticClass: "delete",
-    on: {
-      "click": function($event) {
-        _vm.cancel()
-      }
-    }
-  })]), _vm._v(" "), _c('section', {
-    staticClass: "modal-card-body"
-  }, [_c('form', [_c('label', {
+    staticClass: "container"
+  }, [_c('h2', {
+    staticClass: "title is-4"
+  }, [_vm._v("Bewerk aanvraag")]), _vm._v(" "), _c('form', [_c('label', {
     staticClass: "label"
   }, [_vm._v("Bedrijfsnaam")]), _vm._v(" "), _c('p', {
     staticClass: "control"
@@ -16389,10 +16312,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.lead.fixed_price = $event.target.value
       }
     }
-  })])])]), _vm._v(" "), _c('footer', {
-    staticClass: "modal-card-foot"
+  })])]), _vm._v(" "), _c('footer', {
+    staticClass: "footer"
   }, [_c('a', {
-    staticClass: "button",
+    staticClass: "button is-default",
     attrs: {
       "type": "button"
     },
@@ -16402,25 +16325,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Opslaan")]), _vm._v(" "), _c('a', {
     staticClass: "button is-primary",
     on: {
-      "click": function($event) {
-        _vm.quote()
-      }
+      "click": _vm.quote
     }
   }, [_vm._v("Offerte")]), _vm._v(" "), _c('a', {
     staticClass: "button is-success",
     on: {
-      "click": function($event) {
-        _vm.promote()
-      }
+      "click": _vm.promote
     }
   }, [_vm._v("Akkoord")]), _vm._v(" "), _c('a', {
-    staticClass: "button is-danger",
+    staticClass: "button",
+    attrs: {
+      "type": "button"
+    },
     on: {
-      "click": function($event) {
-        _vm.remove()
-      }
+      "click": _vm.redirect
     }
-  }, [_vm._v("Verwijderen")])])])]) : _vm._e()
+  }, [_vm._v("Sluiten")])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -16469,18 +16389,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.edit = true
       }
     }
-  }, [_vm._v("Edit")])])]), _vm._v(" "), _c('lead-edit', {
-    key: _vm.lead.id,
-    attrs: {
-      "lead": _vm.lead,
-      "show": _vm.edit
-    },
-    on: {
-      "hide": function($event) {
-        _vm.edit = false
-      }
-    }
-  })], 1)
+  }, [_vm._v("Edit")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('span', {
     staticClass: "icon"
@@ -17475,25 +17384,7 @@ if (false) {
 }
 
 /***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('leads', {
-    attrs: {
-      "api_url": "/api/leads"
-    }
-  })
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a0549b74", module.exports)
-  }
-}
-
-/***/ }),
+/* 116 */,
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17517,21 +17408,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Geen aanvragen gevonden")]) : _vm._e(), _vm._v(" "), (_vm.amount) ? _c('table', {
     staticClass: "table is-striped is-narrow"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.records), function(lead) {
-    return _c('tr', [_c('td', [_c('a', {
-      on: {
-        "click": function($event) {
-          _vm.edit(lead)
+    return _c('tr', [_c('td', [_c('router-link', {
+      attrs: {
+        "to": {
+          name: 'lead-edit',
+          params: {
+            leadId: lead.id
+          }
         }
       }
-    }, [_vm._v(_vm._s(lead.client))])]), _vm._v(" "), (lead.fixed_price > 0) ? _c('td', [_c('strong', [_vm._v("€" + _vm._s(lead.fixed_price))])]) : _vm._e(), _vm._v(" "), (lead.hour_estimate > 0) ? _c('td', [_c('strong', [_vm._v("€ " + _vm._s(lead.hour_estimate * lead.hour_rate))])]) : _vm._e(), _vm._v(" "), (lead.fixed_price > 0) ? _c('td', [_c('i', {
+    }, [_vm._v(_vm._s(lead.client))])], 1), _vm._v(" "), (lead.fixed_price > 0) ? _c('td', [_c('strong', [_vm._v("€" + _vm._s(lead.fixed_price))])]) : _vm._e(), _vm._v(" "), (lead.hour_estimate > 0) ? _c('td', [_c('strong', [_vm._v("€ " + _vm._s(lead.hour_estimate * lead.hour_rate))])]) : _vm._e(), _vm._v(" "), (lead.fixed_price > 0) ? _c('td', [_c('i', {
       staticClass: "fa fa-lock"
     })]) : _vm._e(), _vm._v(" "), (lead.hour_estimate > 0) ? _c('td', [_c('i', {
       staticClass: "fa fa-unlock"
-    })]) : _vm._e(), _vm._v(" "), _c('lead-edit', {
-      attrs: {
-        "lead": lead
-      }
-    })], 1)
+    })]) : _vm._e()])
   })), _vm._v(" "), _c('tfoot', [_c('tr', [_c('th', [_vm._v("Totaal:")]), _vm._v(" "), _c('th', [_vm._v("€ " + _vm._s(_vm.total_worth))]), _vm._v(" "), _c('th', [_vm._v(" ")])])])]) : _vm._e(), _vm._v(" "), _c('hr'), _vm._v(" "), (_vm.amount) ? _c('p', {
     staticClass: "has-text-centered"
   }, [_c('router-link', {

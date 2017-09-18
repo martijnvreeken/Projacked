@@ -29,7 +29,6 @@
           <a class="card-footer-item" @click="edit = true">Edit</a>
         </footer>
     </div>
-    <lead-edit :lead="lead" :key="lead.id" :show="edit" @hide="edit = false"></lead-edit>
 </div>
 </template>
 

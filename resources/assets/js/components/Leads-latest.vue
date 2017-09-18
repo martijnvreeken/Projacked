@@ -12,12 +12,11 @@
             </thead>
             <tbody>
                 <tr v-for="lead in records">
-                    <td><a @click="edit(lead)">{{ lead.client }}</a></td>
+                    <td><router-link :to="{name: 'lead-edit', params: { leadId: lead.id }}">{{ lead.client }}</router-link></td>
                     <td v-if="lead.fixed_price > 0"><strong>&euro;{{ lead.fixed_price }}</strong></td>
                     <td v-if="lead.hour_estimate > 0"><strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></td>
                     <td v-if="lead.fixed_price > 0"><i class="fa fa-lock"></i></td>
                     <td v-if="lead.hour_estimate > 0"><i class="fa fa-unlock"></i></td>
-                    <lead-edit :lead="lead"></lead-edit>
                 </tr>
             </tbody>
             <tfoot>
@@ -59,7 +58,12 @@
         },
         methods: {
             edit(lead) {
-                // show modal somehow
+                app.$router.push({
+                    name: 'lead-edit',
+                    params: {
+                        leadId: lead.id
+                    }
+                });
             }
         }
     }

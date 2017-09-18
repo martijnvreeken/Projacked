@@ -1,12 +1,7 @@
 <template>
-<div class="modal is-active" :id="`lead-modal-${lead.id}`" v-if="show">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-        <p class="modal-card-title">Bewerk aanvraag</p>
-        <button class="delete" @click="cancel()"></button>
-    </header>
-    <section class="modal-card-body">
+<div class="section">
+  <div class="container">
+        <h2 class="title is-4">Bewerk aanvraag</h2>
         <form>
             <label class="label">Bedrijfsnaam</label>
             <p class="control">
@@ -48,24 +43,25 @@
                 <input class="input" type="text" placeholder="Vaste prijs afspraak" v-model="lead.fixed_price">
             </p>
         </form>
-    </section>
-    <footer class="modal-card-foot">
-        <a type="button" class="button" @click="submit">Opslaan</a>
-        <a class="button is-primary" @click="quote()">Offerte</a>
-        <a class="button is-success" @click="promote()">Akkoord</a>
-        <a class="button is-danger" @click="remove()">Verwijderen</a>
+    <footer class="footer">
+        <a type="button" class="button is-default" @click="submit">Opslaan</a>
+        <a class="button is-primary" @click="quote">Offerte</a>
+        <a class="button is-success" @click="promote">Akkoord</a>
+        <a type="button" class="button" @click="redirect">Sluiten</a>
     </footer>
   </div>
 </div>
 </template>
 
 <script>
-    import { eventBus } from '../app';
-
     export default {
-        props: {
-            lead: Object,
-            show: false
+        data() {
+            return {
+                lead: {}
+            };
+        },
+        mounted() {
+            // get the lead based on leadId from the uri
         },
         methods: {
             submit() {
@@ -73,7 +69,7 @@
                 if(this.validates()) {
                     axios.put('/api/leads/'+this.lead.id, this.lead).then(
                         function (response) {
-                            $this.cancel();
+                            $this.redirect();
                         }
                     ).catch(
                         function (error) {
@@ -82,26 +78,13 @@
                     );
                 }
             },
-            remove() {
-                let $this = this;
-                axios.delete('/api/leads/'+this.lead.id).then(
-                    function (response) {
-                        $this.$store.commit('removeLead', $this.lead);
-                        $this.cancel();
-                    }
-                ).catch(
-                    function (error) {
-                        console.log(error);
-                    }
-                );
-            },
             promote() {
                 let $this = this;
                 axios.post('/api/leads/promote', this.lead).then(
                     function (response) {
                         // successfuly promoted the lead, it's no longer available
                         $this.$store.commit('removeLead', $this.lead);
-                        app.$router.push('/projecten');
+                        app.$router.push({ name: 'projects'});
                     }
                 ).catch(
                     function (error) {
@@ -113,7 +96,7 @@
                 axios.post('/api/quotations', this.lead).then(
                     function (response) {
                         // successfuly created the quotation
-                        this.cancel();
+                        this.redirect();
                     }
                 ).catch(
                     function (error) {
@@ -124,8 +107,10 @@
             validates() {
                 return true;
             },
-            cancel() {
-                this.$emit('hide');
+            redirect() {
+                app.$router.push({
+                    name: 'leads'
+                });
             },
         }
     }
