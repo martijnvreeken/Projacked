@@ -1,5 +1,5 @@
 <template>
-    <leads api_url="/api/leads"></leads>
+    <leads></leads>
 </template>
 
 <script>

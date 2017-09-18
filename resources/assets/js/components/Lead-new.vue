@@ -68,7 +68,7 @@
                     let $this = this;
                     axios.post('/api/leads', this.$data).then(
                         function (response) {
-                            $this.$store.commit('addLeads', response.data);
+                            $this.$store.commit('addLead', response.data);
                             app.$router.push('/aanvragen');
                         }
                     ).catch(

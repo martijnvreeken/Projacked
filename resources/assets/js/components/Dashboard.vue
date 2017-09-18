@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <h1 class="title is-1 has-text-centered">Dashboard</h1>
-    <latest-leads api_url="/api/leads"></latest-leads>
+    <latest-leads></latest-leads>
     <latest-projects api_url="/api/projects"></latest-projects>
     <div class="columns">
         <div class="column">
@@ -23,6 +23,9 @@
         components: {
             latestLeads: leads,
             latestProjects: projects
+        },
+        created() {
+            this.$store.dispatch('init');
         }
     }
 </script>

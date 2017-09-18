@@ -44,10 +44,11 @@
             </p>
         </form>
     <footer class="footer">
-        <a type="button" class="button is-default" @click="submit">Opslaan</a>
-        <a class="button is-primary" @click="quote">Offerte</a>
-        <a class="button is-success" @click="promote">Akkoord</a>
-        <a type="button" class="button" @click="redirect">Sluiten</a>
+        <a type="button" class="button is-default" @click.prevent="submit">Opslaan</a>
+        <a class="button is-primary" @click.prevent="quote">Offerte</a>
+        <a class="button is-success" @click.prevent="promote">Akkoord</a>
+        <a class="button is-danger" @click.prevent="remove">Verwijder</a>
+        <a type="button" class="button" @click.prevent="redirect">Sluiten</a>
     </footer>
   </div>
 </div>
@@ -62,6 +63,14 @@
         },
         mounted() {
             // get the lead based on leadId from the uri
+            this.lead = this.$store.getters.getLeadById(this.$route.params.leadId);
+        },
+        watch: {
+          '$route' (to, from) {
+              if(typeof to.params.leadId !== 'undefined') {
+                  this.lead = this.$store.getters.getLeadById(to.params.leadId);
+              }
+          }
         },
         methods: {
             submit() {
@@ -103,6 +112,11 @@
                         console.log(error);
                     }
                 );
+            },
+            remove() {
+              // TODO: put this in a Promise
+              this.$store.dispatch('removeLead', { lead: this.lead });
+              this.redirect();
             },
             validates() {
                 return true;

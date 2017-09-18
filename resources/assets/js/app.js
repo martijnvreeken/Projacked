@@ -17,14 +17,6 @@ import Vuex from 'vuex';
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-// Add a request interceptor
-axios.interceptors.request.use(function (config) {
-  return config;
-}, function (error) {
-  // Do something with request error
-  return Promise.reject(error);
-});
-
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
   if (response.headers.authorization) {
@@ -83,58 +75,9 @@ router.beforeEach((to, from, next) => {
  * VueX Init
  */
 
+import {store_config} from './store';
 Vue.use(Vuex);
-const store = new Vuex.Store({
-  state: {
-    leads: [],
-    projects: [],
-    clients: [],
-    account: {}
-  },
-  getters: {
-    leadsWorth: (state) => {
-      return state.leads.reduce( (sum, lead) => {
-        if(lead.hour_estimate) {
-            return sum + (lead.hour_estimate * lead.hour_rate);
-        } else if(lead.fixed_price) {
-            return sum + lead.fixed_price;
-        }
-        return sum;
-      }, 0);
-    },
-    projectsWorth: (state) => {
-      return state.projects.reduce( (sum, project) => {
-        if(project.hour_estimate) {
-            return sum + (project.hour_estimate * project.hour_rate);
-        } else {
-            return sum + project.fixed_price;
-        }
-      }, 0);
-    },
-    leads: (state) => {
-      return state.leads;
-    }
-  },
-  mutations: {
-    setAccount: (state, account) => {
-      state.account = account;
-    },
-    addLeads: (state, items) => {
-      state.leads = state.leads.concat(items);
-    },
-    removeLead: (state, item) => {
-      let i = state.leads.indexOf(item);
-      if(i == -1) {
-        console.error('lead not found!');
-        return;
-      }
-      state.leads.splice(i,0);
-    },
-    addProjects: (state, items) => {
-      state.projects = state.projects.concat(items);
-    }
-  }
-});
+const store = new Vuex.Store(store_config);
 
 /**
  * Instantiate Vue

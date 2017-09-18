@@ -2,7 +2,7 @@
     <div class="container box">
         <h4 class="title is-4">Recente aanvragen <router-link class="button is-pulled-right" to="/aanvragen/nieuw"><i class="fa fa-plus" aria-hidden="true"></i></router-link></h4>
         <p v-if="! amount" class="has-text-centered">Geen aanvragen gevonden</p>
-        <table v-if="amount" class="table is-striped is-narrow">
+        <table v-if="amount" class="table is-striped is-narrow is-fullwidth">
             <thead>
                 <tr>
                     <th>Prospect</th>
@@ -13,10 +13,16 @@
             <tbody>
                 <tr v-for="lead in records">
                     <td><router-link :to="{name: 'lead-edit', params: { leadId: lead.id }}">{{ lead.client }}</router-link></td>
-                    <td v-if="lead.fixed_price > 0"><strong>&euro;{{ lead.fixed_price }}</strong></td>
-                    <td v-if="lead.hour_estimate > 0"><strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></td>
-                    <td v-if="lead.fixed_price > 0"><i class="fa fa-lock"></i></td>
-                    <td v-if="lead.hour_estimate > 0"><i class="fa fa-unlock"></i></td>
+                    <td>
+                      <span v-if="lead.fixed_price > 0"><strong>&euro;{{ lead.fixed_price }}</strong></span>
+                      <span v-if="lead.hour_estimate > 0"><strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></span>
+                      <span v-else>&nbsp;</span>
+                    </td>
+                    <td>
+                      <span v-if="lead.fixed_price > 0"><i class="fa fa-lock"></i></span>
+                      <span v-if="lead.hour_estimate > 0"><i class="fa fa-unlock"></i></span>
+                      <span v-else>&nbsp;</span>
+                    </td>
                 </tr>
             </tbody>
             <tfoot>
@@ -33,28 +39,11 @@
 </template>
 
 <script>
-    import { eventBus } from '../app';
-    import form from './Lead-edit';
     import { mapGetters } from 'vuex';
 
     export default {
-        props: {
-            api_url: String,
-        },
-        components: {
-            leadEdit: form
-        },
-        created() {
-            let $this = this;
-            axios.get(this.api_url).then((response) => {
-                this.$store.commit('addLeads', response.data.data);
-            });
-        },
         computed: {
-            ...mapGetters({total_worth: 'leadsWorth', records: 'leads'}),
-            amount() {
-                return this.records.length;
-            }
+            ...mapGetters({total_worth: 'leadsWorth', records: 'leads', amount: 'leadsTotal'}),
         },
         methods: {
             edit(lead) {

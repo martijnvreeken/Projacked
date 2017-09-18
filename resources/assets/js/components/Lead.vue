@@ -20,30 +20,20 @@
             <div class="content">
                 <small>{{ lead.created_at }}</small>
                 <p>{{ lead.description }}</p>
-                <p v-if="lead.fixed_price > 0">Vaste prijs: <strong>&euro;{{ lead.fixed_price }}</strong></p>
                 <hr>
+                <p v-if="lead.fixed_price > 0">Vaste prijs: <strong>&euro;{{ lead.fixed_price }}</strong></p>
                 <p v-if="lead.hour_estimate > 0">{{ lead.hour_estimate }} uur * &euro; {{ lead.hour_rate }}/u = <strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></p>
             </div>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" @click="edit = true">Edit</a>
+          <router-link :to="{name: 'lead-edit', params: { leadId: lead.id }}" class="card-footer-item">Edit</router-link>
         </footer>
     </div>
 </div>
 </template>
 
 <script>
-    import form from './Lead-edit';
-
     export default {
         props: { lead: Object },
-        components: {
-            leadEdit: form
-        },
-        data() {
-            return {
-                edit: false
-            };
-        }
     }
 </script>
