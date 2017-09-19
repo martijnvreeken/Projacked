@@ -23,7 +23,7 @@
             lead: lead
         },
         computed: {
-            ...mapGetters({records: 'leads', total: 'leadsTotal', canLoadMore: 'canLoadMore'})
+            ...mapGetters({records: 'leads', total: 'leadsTotal', canLoadMore: 'canLoadMoreLeads'})
         },
         methods: {
             loadMore() {

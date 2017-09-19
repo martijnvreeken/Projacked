@@ -26,25 +26,14 @@
             </div>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" @click="edit = true">Edit</a>
+          <router-link class="card-footer-item" :to="{ name: 'project-edit', params: { projectId: project.id } }">Edit</router-link>
         </footer>
     </div>
-    <project-edit :project="project" :key="project.id" :show="edit" @hide="edit = false"></project-edit>
 </div>
 </template>
 
 <script>
-    import form from './Project-edit';
-
     export default {
         props: { project: Object },
-        components: {
-            projectEdit: form
-        },
-        data() {
-            return {
-                edit: false
-            };
-        }
     }
 </script>
