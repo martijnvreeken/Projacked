@@ -27,7 +27,7 @@
         },
         methods: {
             loadMore() {
-                axios.get(this.$store.state.next_page_url).then((response) => {
+                axios.get(this.$store.state.leads.next_page_url).then((response) => {
                     $this.$store.commit('addLeads', response.data);
                 });
             },

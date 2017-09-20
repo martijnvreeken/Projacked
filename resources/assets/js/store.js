@@ -10,7 +10,11 @@ export const store_config = {
       items: [],
       next_page_url: null
     },
-    clients: [],
+    clients: {
+      total: 0,
+      items: [],
+      next_page_url: null
+    },
     account: {}
   },
   getters: {
@@ -56,6 +60,18 @@ export const store_config = {
     },
     canLoadMoreProjects: (state) => {
       return state.projects.next_page_url !== null;
+    },
+    clients: (state) => {
+      return state.clients.items;
+    },
+    clientsTotal: (state) => {
+      return state.clients.total;
+    },
+    getClientById: (state) => (id) => {
+      return state.clients.items.find(client => client.id === id);
+    },
+    canLoadMoreClients: (state) => {
+      return state.clients.next_page_url !== null;
     }
   },
   mutations: {
@@ -71,11 +87,11 @@ export const store_config = {
       state.leads.items = data.data;
       state.leads.next_page_url = data.next_page_url;
     },
-    addLeads: (state, data) => {
-      state.leads.total = data.total;
-      if(data.data.length > 0) {
-          state.leads.items = state.leads.items.concat(data.data);
-          state.leads.next_page_url = data.next_page_url;
+    addLeads: (state, leads) => {
+      state.leads.total = leads.total;
+      if(leads.data.length > 0) {
+          state.leads.items = state.leads.items.concat(leads.data);
+          state.leads.next_page_url = leads.next_page_url;
       }
     },
     removeLead: (state, item) => {
@@ -92,11 +108,11 @@ export const store_config = {
       state.projects.items = data.data;
       state.projects.next_page_url = data.next_page_url;
     },
-    addProjects: (state, data) => {
-      state.projects.total = data.total;
-      if(data.data.length > 0) {
-        state.projects.items = state.projects.items.concat(data.data);
-        state.projects.next_page_url = data.next_page_url;
+    addProjects: (state, projects) => {
+      state.projects.total = projects.total;
+      if(projects.data.length > 0) {
+        state.projects.items = state.projects.items.concat(projects.data);
+        state.projects.next_page_url = projects.next_page_url;
       }
     },
     removeProject: (state, item) => {
@@ -106,6 +122,18 @@ export const store_config = {
         return;
       }
       state.projects.items.splice(i, 1);
+    },
+    setClients: (state, clients) => {
+      state.clients.total = clients.total;
+      state.clients.items = state.clients.items.concat(clients.data);
+      state.clients.next_page_url = clients.next_page_url;
+    },
+    addClients: (state, clients) => {
+      state.clients.total = clients.total;
+      if(clients.data.length > 0) {
+        state.clients.items = state.clients.items.concat(clients.data);
+        state.clients.next_page_url = clients.next_page_url;
+      }
     }
   },
   actions: {
@@ -116,6 +144,9 @@ export const store_config = {
       });
       axios.get('/api/projects').then((response) => {
         context.commit('setProjects', response.data);
+      });
+      axios.get('/api/clients').then((response) => {
+        context.commit('setClients', response.data);
       });
     },
     removeLead (context, payload) {

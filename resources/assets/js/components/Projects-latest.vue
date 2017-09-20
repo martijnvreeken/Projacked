@@ -14,7 +14,7 @@
                 <tr v-for="project in records">
                     <td><a @click="edit(project)">{{ project.client.name }}</a></td>
                     <td>
-                      <span v-if="project.fixed_price > 0"><strong>&euro;{{ project.fixed_price }}</strong></span>
+                      <span v-if="project.fixed_price > 0"><strong>&euro; {{ project.fixed_price }}</strong></span>
                       <span v-if="project.hour_estimate > 0"><strong>&euro; {{ project.hour_estimate * project.hour_rate }}</strong></span>
                       <span v-else>&nbsp;</span>
                     </td>

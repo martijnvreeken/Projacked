@@ -87,39 +87,35 @@ export default {
       let $this = this;
       if(this.validates()) {
         axios.put('/api/leads/'+this.lead.id, this.lead).then(
-          function (response) {
-            $this.redirect();
-          }
+          (response) => { $this.redirect(); }
         ).catch(
-          function (error) {
-            console.log(error);
-          }
+          (error) => { console.log(error); }
         );
       }
     },
     promote() {
       let $this = this;
       axios.post('/api/leads/promote', this.lead).then(
-        function (response) {
+        (response) => {
           // successfuly promoted the lead, it's no longer available
           // $this.$store.commit('removeLead', $this.lead);
           $this.$store.dispatch('init');
           app.$router.push({ name: 'projects'});
         }
       ).catch(
-        function (error) {
+        (error) => {
           console.log(error);
         }
       );
     },
     quote() {
       axios.post('/api/quotations', this.lead).then(
-        function (response) {
+        (response) => {
           // successfuly created the quotation
           this.redirect();
         }
       ).catch(
-        function (error) {
+        (error) => {
           console.log(error);
         }
       );

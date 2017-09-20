@@ -14,7 +14,7 @@
                 <tr v-for="lead in records">
                     <td><router-link :to="{name: 'lead-edit', params: { leadId: lead.id }}">{{ lead.client }}</router-link></td>
                     <td>
-                      <span v-if="lead.fixed_price > 0"><strong>&euro;{{ lead.fixed_price }}</strong></span>
+                      <span v-if="lead.fixed_price > 0"><strong>&euro; {{ lead.fixed_price }}</strong></span>
                       <span v-if="lead.hour_estimate > 0"><strong>&euro; {{ lead.hour_estimate * lead.hour_rate }}</strong></span>
                       <span v-else>&nbsp;</span>
                     </td>

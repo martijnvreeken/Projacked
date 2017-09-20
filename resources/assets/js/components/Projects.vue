@@ -6,7 +6,9 @@
         </div>
         <hr>
         <p v-if="records.length > 0" class="has-text-centered">Toont {{ records.length }} projecten van {{ total }} totaal</p>
-        <p class="has-text-centered"><a v-show="canLoadMore" @click.prevent="loadMore" href="#" class="button is-primary">Laad meer projecten</a></p>
+        <p class="has-text-centered" v-if="canLoadMore">
+          <a @click.prevent="loadMore" href="#" class="button is-primary">Laad meer projecten</a>
+        </p>
     </div>
 </template>
 
@@ -33,7 +35,7 @@
               this.$store.dispatch('init');
             },
             loadMore() {
-                axios.get(this.data.next_page_url).then((response) => {
+                axios.get(this.$store.state.projects.next_page_url).then((response) => {
                     this.$store.commit('addProjects', response.data);
                 });
             },
