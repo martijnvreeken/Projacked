@@ -10,15 +10,15 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
- mix.options({
-   extractVueStyles: false,
-   processCssUrls: true,
-   uglify: {},
-   purifyCss: false,
-  //  purifyCss: {},
-   postCss: [require('autoprefixer')],
-   clearConsole: false
- });
+ // mix.options({
+ //   extractVueStyles: false,
+ //   processCssUrls: true,
+ //   uglify: false,
+ //   purifyCss: false,
+ //  //  purifyCss: {},
+ //   postCss: [require('autoprefixer')],
+ //   clearConsole: false
+ // });
 
 mix.js('resources/assets/js/index.js', 'js')
    .js('resources/assets/js/app.js', 'js')
