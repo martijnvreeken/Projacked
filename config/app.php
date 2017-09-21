@@ -180,6 +180,7 @@ return [
         // Projacked\Providers\BroadcastServiceProvider::class,
         Projacked\Providers\EventServiceProvider::class,
         Projacked\Providers\RouteServiceProvider::class,
+        Projacked\Providers\SlackLoggingProvider::class
 
     ],
 
