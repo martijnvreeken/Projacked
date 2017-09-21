@@ -18,16 +18,16 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
-  if (response.headers.authorization) {
-    let token = response.headers.authorization.split(' ');
-    app.setToken(token[1]);
-  }
-  return response;
-}, function (error) {
+// axios.interceptors.response.use(function (response) {
+//   if (response.headers.authorization) {
+//     let token = response.headers.authorization.split(' ');
+//     app.setToken(token[1]);
+//   }
+//   return response;
+// }, function (error) {
   // Do something with response error
-  return Promise.reject(error);
-});
+//   return Promise.reject(error);
+// });
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -35,10 +35,10 @@ axios.interceptors.response.use(function (response) {
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+const csrf = document.head.querySelector('meta[name="csrf-token"]');
 
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+if (csrf) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf.content;
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -69,7 +69,7 @@ router.beforeEach((to, from, next) => {
         return;
     }
     next();
-})
+});
 
 /**
  * VueX Init
