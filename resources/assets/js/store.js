@@ -31,6 +31,9 @@ export const store_config = {
     leads: (state) => {
       return state.leads.items;
     },
+    topLeads: (state) => {
+      return state.leads.items.slice(0,5);
+    },
     leadsTotal: (state) => {
       return state.leads.total;
     },
@@ -51,6 +54,9 @@ export const store_config = {
     },
     projects: (state) => {
       return state.projects.items;
+    },
+    topProjects: (state) => {
+      return state.projects.items.slice(0,5);
     },
     projectsTotal: (state) => {
       return state.projects.total;

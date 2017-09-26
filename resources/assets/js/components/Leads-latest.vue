@@ -43,7 +43,7 @@
 
     export default {
         computed: {
-            ...mapGetters({total_worth: 'leadsWorth', records: 'leads', amount: 'leadsTotal'}),
+            ...mapGetters({total_worth: 'leadsWorth', records: 'topLeads', amount: 'leadsTotal'}),
         },
         methods: {
             edit(lead) {

@@ -2,7 +2,7 @@
 <div class="container">
     <h1 class="title is-1 has-text-centered">Dashboard</h1>
     <latest-leads></latest-leads>
-    <latest-projects api_url="/api/projects"></latest-projects>
+    <latest-projects></latest-projects>
     <div class="columns">
         <div class="column">
             <router-link to="/klanten">

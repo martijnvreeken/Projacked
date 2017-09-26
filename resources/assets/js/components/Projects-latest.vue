@@ -50,7 +50,7 @@
             });
         },
         computed: {
-            ...mapGetters({total_worth: 'projectsWorth', records: 'projects', amount: 'projectsTotal'})
+            ...mapGetters({total_worth: 'projectsWorth', records: 'topProjects', amount: 'projectsTotal'})
         },
         methods: {
             edit(project) {
