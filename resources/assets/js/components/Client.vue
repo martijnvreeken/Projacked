@@ -1,5 +1,4 @@
 <template>
-  <div class="detailview column is-half-tablet is-one-third-desktop">
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
@@ -30,7 +29,6 @@
         <router-link class="card-footer-item" :to="{ name: 'client-edit', params: { clientId: client.id } }">Edit</router-link>
       </footer>
     </div>
-  </div>
 </template>
 
 <script>

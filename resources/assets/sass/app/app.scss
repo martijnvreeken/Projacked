@@ -8,7 +8,9 @@
 // Bulma
 @import 'node_modules/bulma/bulma.sass';
 
-.detailview {
-    margin: 4px auto;
-    max-width: 460px;
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
 }

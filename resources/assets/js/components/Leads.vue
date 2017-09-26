@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="title is-1 has-text-centered">Aanvragen</h1>
         <p v-if="records.length == 0" class="has-text-centered">Geen aanvragen gevonden</p>
-        <div class="columns is-multiline" v-else>
+        <div v-else class="card-grid">
             <lead v-for="lead in records" :lead="lead" :key="lead.id"></lead>
         </div>
         <hr>
@@ -27,6 +27,7 @@
         },
         methods: {
             loadMore() {
+                let $this = this;
                 axios.get(this.$store.state.leads.next_page_url).then((response) => {
                     $this.$store.commit('addLeads', response.data);
                 });

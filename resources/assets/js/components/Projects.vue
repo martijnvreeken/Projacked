@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1 class="title is-1 has-text-centered">Projecten</h1>
-        <div class="columns is-multiline">
+        <div class="card-grid">
             <project v-for="project in records" :project="project" :key="project.id"></project>
         </div>
         <hr>

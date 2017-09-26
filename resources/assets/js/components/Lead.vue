@@ -1,5 +1,4 @@
 <template>
-<div class="detailview">
     <div class="card">
         <header class="card-header">
           <p class="card-header-title">
@@ -29,7 +28,6 @@
           <router-link :to="{name: 'lead-edit', params: { leadId: lead.id }}" class="card-footer-item">Edit</router-link>
         </footer>
     </div>
-</div>
 </template>
 
 <script>

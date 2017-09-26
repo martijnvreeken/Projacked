@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title is-1 has-text-centered">Klanten</h1>
-    <div class="columns is-multiline">
+    <div class="card-grid">
       <client v-for="client in records" :client="client" :key="client.id"></client>
     </div>
     <hr>
@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     loadMore() {
+      let $this = this;
       axios.get(this.$store.state.clients.next_page_url).then((response) => {
         $this.$store.commit('addClients', response.data);
       });
