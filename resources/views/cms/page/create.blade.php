@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="field">
-            <label class="label" for="body">Tekst</label>
+            <label class="label" for="body">Tekst (Markdown)</label>
             <div class="control">
                 <textarea class="textarea" name="body" id="body"></textarea>
             </div>

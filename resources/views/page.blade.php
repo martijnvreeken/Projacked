@@ -5,7 +5,7 @@
         <div class="container">
             <div class="columns">
               <div class="content column is-three-quarters">
-                {!! $page->body !!}
+                {!! Markdown::convertToHtml($page->body) !!}
               </div>
               @include('partial.side-menu', ['subject'=>$page->title])
             </div>

@@ -9,7 +9,7 @@
         "laravel/framework": "5.4.*",
         "tymon/jwt-auth": "0.5.*",
         "laravelcollective/html": "^5.3.0",
-        "graham-campbell/markdown": "^7.1",
+        "graham-campbell/markdown": "^8.0",
         "dompdf/dompdf": "^0.7.0",
         "laravel/tinker": "^1.0"
     },
