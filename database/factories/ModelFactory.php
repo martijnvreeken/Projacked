@@ -24,9 +24,20 @@ $factory->define(Projacked\Models\User::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(Projacked\Models\Lead::class, function (Faker\Generator $faker) {
+    return [
+        'client' => $faker->company,
+        'client_name' => $faker->name,
+        'client_email' => $faker->email,
+        'client_phone' => $faker->phoneNumber,
+        'description' => $faker->text()
+    ];
+});
+
 $factory->define(Projacked\Models\Client::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->company,
+        'contact' => $faker->name,
         'code' => $faker->unique()->numberBetween(),
         'debit_number' => $faker->unique()->numberBetween(),
         'coc_number' => $faker->numberBetween(),
