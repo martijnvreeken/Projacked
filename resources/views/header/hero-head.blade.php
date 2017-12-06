@@ -15,6 +15,7 @@
                         <span>Offerte</span>
                     </a>
                 </span>
+                <span class="nav-item"><a href="tel:0306061700" class="button is-white is-small">030-606 1700</a></span>
             </div>
             <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
             <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
