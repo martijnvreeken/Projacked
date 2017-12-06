@@ -100,6 +100,15 @@
                         <p><a class="button is-info" href="https://laravel.com/" target="_new">Lees meer</a></p>
                     </div>
                     <div class="column">
+                        <figure class="image is-128x128" style="display: inline-block;"><img src="/images/adonisjs.png" alt="AdonisJS"></figure>
+                        <h3 class="title">
+                            AdonisJS
+                        </h3>
+                        <p>Framework voor het maken van NodeJS applicaties.</p>
+                        <br>
+                        <p><a class="button is-info" href="https://adonisjs.com/" target="_new">Lees meer</a></p>
+                    </div>
+                    <div class="column">
                         <figure class="image is-128x128" style="display: inline-block;"><img src="/images/vuejs_logo.png" alt="Vuejs"></figure>
                         <h3 class="title">
                             Vue
@@ -107,6 +116,26 @@
                         <p>Javascript framework voor hipsters.</p>
                         <br>
                         <p><a class="button is-info" href="https://vuejs.org/" target="_new">Lees meer</a></p>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <figure class="image is-128x128" style="display: inline-block;"><img src="/images/nginxhero.png" alt="Nginx"></figure>
+                        <h3 class="title">
+                            Nginx
+                        </h3>
+                        <p>Schaalbare hosting oplossingen.</p>
+                        <br>
+                        <p><a class="button is-info" href="https://nginx.org/en/" target="_new">Lees meer</a></p>
+                    </div>
+                    <div class="column">
+                        <figure class="image is-128x128" style="display: inline-block;"><img src="/images/elasticsearch.png" alt="Elastic Search"></figure>
+                        <h3 class="title">
+                            Elastic Search
+                        </h3>
+                        <p>D&eacute; software voor maatwerk zoekmachines in webapplicaties.</p>
+                        <br>
+                        <p><a class="button is-info" href="https://www.elastic.co/products/elasticsearch" target="_new">Lees meer</a></p>
                     </div>
                     <div class="column">
                         <figure class="image is-128x128" style="display: inline-block;"><img src="/images/wordpress_logo.png" alt="Wordpress"></figure>
